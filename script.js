@@ -124,9 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const price = parseInt(checkedRadio.getAttribute('data-price'));
         const quantity = parseInt(quantityInput.value);
         
-        let shipFee = isFreeshipSaved ? 0 : 30000; 
-        if(!isFreeshipSaved) { shipFeeText.textContent = '30.000₫'; shipFeeText.style.color = 'var(--text-main)'; }
-
+        let shipFee = 0; // Luôn freeship
         const total = (price * quantity) + shipFee;
         
         totalPriceDisplay.textContent = formatCurrency(total);
