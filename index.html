@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Đặt hàng Trứng Cào Cào Giá Rẻ</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 </head>
@@ -29,26 +29,89 @@
         </div>
     </header>
 
-    <!-- Product Info -->
-    <section class="product-info">
-        <h1 class="product-title">Trứng Cào Cào Cốm Giống Chất Lượng</h1>
-        <p class="product-desc">Cam kết nở tỉ lệ cao, con non khỏe mạnh. Hỗ trợ kỹ thuật nuôi và cách chăm sóc tận tình.</p>
-        <div class="price-range">Chỉ từ <span>99.000₫</span></div>
+    <!-- Flash Sale Section -->
+    <section class="flash-sale">
+        <div class="flash-header">
+            <div class="flash-title">🔥 GIỜ VÀNG GIÁ SỐC 🔥</div>
+            <div class="countdown" id="countdownTimer">02:15:30</div>
+        </div>
+        <div class="product-pricing">
+            <h1 class="product-title">Trứng Cào Cào Cốm Giống Chất Lượng</h1>
+            <div class="price-box">
+                <div class="current-price">Chỉ từ <span>99.000₫</span></div>
+                <div class="original-price">Giá gốc: <del>130.000₫</del></div>
+            </div>
+            <div class="stock-progress">
+                <div class="stock-text">Đã bán: 850 / 862</div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 98%"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="instructions-section">
+        <h2 class="section-title">HƯỚNG DẪN CÁCH ẤP & CHĂM SÓC</h2>
+        
+        <div class="zalo-contact">
+            📞 <strong>Liên hệ Zalo: 0935127132</strong>
+            <p>Để được gửi video chi tiết cách kiểm tra và ấp trứng cào cào.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-icon">1</div>
+                <div class="timeline-content">
+                    <h3>Hướng dẫn ấp trứng</h3>
+                    <ul>
+                        <li>Bỏ trứng vào lồng nuôi, phun nước giữ ẩm thường xuyên (tránh khô/ngập nước).</li>
+                        <li>Sau khoảng 10 ngày trứng sẽ nở. Mỗi trứng nở từ 15-30 con.</li>
+                        <li class="note">Lưu ý: Trứng có thể nở chậm do thiếu nhiệt (trời lạnh) hoặc thiếu ẩm. Trứng có thể nằm dưới đất 4-5 tháng chờ điều kiện thích hợp.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">2</div>
+                <div class="timeline-content">
+                    <h3>Khắc phục trứng nở chậm</h3>
+                    <ul>
+                        <li><strong>Bước 1:</strong> Mỗi sáng phun nước cho trứng ẩm (không để úng nước).</li>
+                        <li><strong>Bước 2:</strong> Phơi nắng dịu tầm 1h để lấy nhiệt (tránh nắng gắt).</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">3</div>
+                <div class="timeline-content">
+                    <h3>Kiểm tra trứng</h3>
+                    <p>Tách nhẹ trứng ra quan sát. Nếu thấy trứng có màu xanh tức là đã sẵn sàng để nở.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">4</div>
+                <div class="timeline-content">
+                    <h3>Chăm sóc cào non</h3>
+                    <ul>
+                        <li>Cho ăn cỏ non trong những ngày đầu. Sau đó có thể cho ăn các loại cỏ khác.</li>
+                        <li>Tầm 10 ngày sau khi nở có thể thu hoạch dần để làm thức ăn cho chim cảnh.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Order Form -->
     <section class="order-section">
         <div class="form-card">
-            <h2>THÔNG TIN ĐẶT HÀNG</h2>
-            <p class="subtitle">Điền thông tin bên dưới để nhận ưu đãi</p>
+            <h2>ĐIỀN THÔNG TIN ĐẶT HÀNG</h2>
+            <p class="subtitle">Ưu đãi sẽ tự động áp dụng</p>
             
             <form id="orderForm">
                 <div class="form-group">
                     <label>Sản phẩm <span class="required">*</span></label>
                     <select id="product" name="product" required>
-                        <option value="Trứng Cào Cào (Hộp 20 trứng)" data-price="99000">Hộp 20 trứng - 99.000₫</option>
-                        <option value="Trứng Cào Cào (Hộp 50 trứng)" data-price="199000">Hộp 50 trứng - 199.000₫</option>
-                        <option value="Trứng Cào Cào (Hộp 100 trứng)" data-price="299000" selected>Hộp 100 trứng - 299.000₫</option>
+                        <option value="Trứng Cào Cào (Hộp 20 trứng)" data-price="99000">Hộp 20 trứng - 99.000₫ (Gốc 130K)</option>
+                        <option value="Trứng Cào Cào (Hộp 50 trứng)" data-price="199000">Hộp 50 trứng - 199.000₫ (Gốc 230K)</option>
+                        <option value="Trứng Cào Cào (Hộp 100 trứng)" data-price="299000" selected>Hộp 100 trứng - 299.000₫ (Gốc 330K)</option>
                     </select>
                 </div>
 
@@ -63,22 +126,36 @@
 
                 <div class="form-group">
                     <label>Họ và Tên <span class="required">*</span></label>
-                    <input type="text" name="fullname" placeholder="Nhập tên người nhận hàng" required>
+                    <input type="text" id="fullname" name="fullname" placeholder="Nhập tên người nhận hàng" required>
                 </div>
 
                 <div class="form-group">
                     <label>Số điện thoại <span class="required">*</span></label>
-                    <input type="tel" name="phone" placeholder="Nhập số điện thoại" required pattern="[0-9]{10,11}">
+                    <input type="tel" id="phone" name="phone" placeholder="VD: 0935127132" required>
+                    <span class="error-message" id="phoneError">Số điện thoại không hợp lệ (cần 10 số bắt đầu bằng 0)</span>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group address-group">
                     <label>Địa chỉ giao hàng <span class="required">*</span></label>
-                    <textarea name="address" rows="3" placeholder="Nhập số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố" required></textarea>
+                    
+                    <select id="province" required>
+                        <option value="" disabled selected>Chọn Tỉnh/Thành phố</option>
+                    </select>
+                    
+                    <select id="district" required disabled>
+                        <option value="" disabled selected>Chọn Quận/Huyện</option>
+                    </select>
+                    
+                    <select id="ward" required disabled>
+                        <option value="" disabled selected>Chọn Phường/Xã</option>
+                    </select>
+
+                    <input type="text" id="street" placeholder="Nhập số nhà, tên đường, thôn/xóm..." required>
                 </div>
 
                 <div class="form-group">
                     <label>Ghi chú (Tùy chọn)</label>
-                    <input type="text" name="notes" placeholder="VD: Giao giờ hành chính, gọi trước khi giao...">
+                    <input type="text" id="notes" name="notes" placeholder="VD: Giao giờ hành chính, gọi trước khi giao...">
                 </div>
 
                 <!-- Tổng kết -->
@@ -94,8 +171,8 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn-submit" id="submitBtn">
-                    ĐẶT HÀNG NGAY
+                <button type="button" class="btn-submit" id="previewBtn">
+                    TIẾN HÀNH ĐẶT HÀNG
                 </button>
             </form>
         </div>
@@ -106,7 +183,28 @@
 <!-- Loading overlay -->
 <div class="loading-overlay" id="loadingOverlay">
     <div class="spinner"></div>
-    <p>Đang xử lý đơn hàng...</p>
+    <p>Đang xử lý...</p>
+</div>
+
+<!-- Confirm Modal -->
+<div class="modal" id="confirmModal">
+    <div class="modal-content confirm-box">
+        <h3>Xác Nhận Đơn Hàng</h3>
+        <p class="confirm-desc">Vui lòng kiểm tra lại thông tin trước khi chốt đơn.</p>
+        <div class="confirm-details">
+            <p><strong>Người nhận:</strong> <span id="confName"></span></p>
+            <p><strong>Điện thoại:</strong> <span id="confPhone"></span></p>
+            <p><strong>Giao đến:</strong> <span id="confAddress"></span></p>
+            <p><strong>Sản phẩm:</strong> <span id="confProduct"></span></p>
+            <p><strong>Số lượng:</strong> <span id="confQuantity"></span></p>
+            <hr>
+            <p class="conf-total"><strong>Tổng cộng:</strong> <span id="confTotal"></span></p>
+        </div>
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="closeConfirmModal()">Sửa lại</button>
+            <button class="btn-confirm" id="confirmSubmitBtn">CHỐT ĐƠN</button>
+        </div>
+    </div>
 </div>
 
 <!-- Success Modal -->
@@ -115,7 +213,7 @@
         <div class="success-icon">✔️</div>
         <h3>Đặt hàng thành công!</h3>
         <p>Cảm ơn bạn đã tin tưởng. Chúng tôi sẽ sớm liên hệ để xác nhận đơn hàng.</p>
-        <button class="btn-close" onclick="closeModal()">Đóng</button>
+        <button class="btn-close" onclick="closeSuccessModal()">Đóng</button>
     </div>
 </div>
 
