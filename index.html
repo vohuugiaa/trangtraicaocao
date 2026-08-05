@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Đặt hàng Trứng Cào Cào Giá Rẻ</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+</head>
+<body>
+
+<div class="mobile-container">
+    
+    <!-- Header / Banner -->
+    <header class="header">
+        <div class="badge-freeship">
+            <span class="icon">🚀</span> MIỄN PHÍ VẬN CHUYỂN
+        </div>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="https://trangtraicaocao.com/wp-content/uploads/2023/08/6bb3a43122c91dc13d92a7ac8be9757c.jpg" alt="Trứng cào cào 1"></div>
+                <div class="swiper-slide"><img src="https://trangtraicaocao.com/wp-content/uploads/2023/08/trung-cao-cao-2.jpg" alt="Trứng cào cào 2"></div>
+                <div class="swiper-slide"><img src="https://trangtraicaocao.com/wp-content/uploads/2023/08/trung-cao-cao-3.jpg" alt="Trứng cào cào 3"></div>
+                <div class="swiper-slide"><img src="https://trangtraicaocao.com/wp-content/uploads/2024/08/Trung-cao-cao-5.jpg" alt="Trứng cào cào 4"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </header>
+
+    <!-- Product Info -->
+    <section class="product-info">
+        <h1 class="product-title">Trứng Cào Cào Cốm Giống Chất Lượng</h1>
+        <p class="product-desc">Cam kết nở tỉ lệ cao, con non khỏe mạnh. Hỗ trợ kỹ thuật nuôi và cách chăm sóc tận tình.</p>
+        <div class="price-range">Chỉ từ <span>99.000₫</span></div>
+    </section>
+
+    <!-- Order Form -->
+    <section class="order-section">
+        <div class="form-card">
+            <h2>THÔNG TIN ĐẶT HÀNG</h2>
+            <p class="subtitle">Điền thông tin bên dưới để nhận ưu đãi</p>
+            
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Sản phẩm <span class="required">*</span></label>
+                    <select id="product" name="product" required>
+                        <option value="Trứng Cào Cào (Hộp 20 trứng)" data-price="99000">Hộp 20 trứng - 99.000₫</option>
+                        <option value="Trứng Cào Cào (Hộp 50 trứng)" data-price="199000">Hộp 50 trứng - 199.000₫</option>
+                        <option value="Trứng Cào Cào (Hộp 100 trứng)" data-price="299000" selected>Hộp 100 trứng - 299.000₫</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Số lượng hộp <span class="required">*</span></label>
+                    <div class="qty-control">
+                        <button type="button" class="btn-qty" id="btn-minus">-</button>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" required readonly>
+                        <button type="button" class="btn-qty" id="btn-plus">+</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Họ và Tên <span class="required">*</span></label>
+                    <input type="text" name="fullname" placeholder="Nhập tên người nhận hàng" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Số điện thoại <span class="required">*</span></label>
+                    <input type="tel" name="phone" placeholder="Nhập số điện thoại" required pattern="[0-9]{10,11}">
+                </div>
+
+                <div class="form-group">
+                    <label>Địa chỉ giao hàng <span class="required">*</span></label>
+                    <textarea name="address" rows="3" placeholder="Nhập số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Ghi chú (Tùy chọn)</label>
+                    <input type="text" name="notes" placeholder="VD: Giao giờ hành chính, gọi trước khi giao...">
+                </div>
+
+                <!-- Tổng kết -->
+                <div class="summary-box">
+                    <div class="summary-row">
+                        <span>Phí giao hàng:</span>
+                        <span class="free-ship">Miễn phí</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Tổng thanh toán:</span>
+                        <span id="totalPriceDisplay">299.000₫</span>
+                        <input type="hidden" name="total" id="totalInput" value="299000">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    ĐẶT HÀNG NGAY
+                </button>
+            </form>
+        </div>
+    </section>
+
+</div>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <p>Đang xử lý đơn hàng...</p>
+</div>
+
+<!-- Success Modal -->
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <div class="success-icon">✔️</div>
+        <h3>Đặt hàng thành công!</h3>
+        <p>Cảm ơn bạn đã tin tưởng. Chúng tôi sẽ sớm liên hệ để xác nhận đơn hàng.</p>
+        <button class="btn-close" onclick="closeModal()">Đóng</button>
+    </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
