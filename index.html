@@ -11,12 +11,12 @@
 </head>
 <body>
 
-<div class="mobile-container">
+<div class="mobile-container pb-sticky">
     
     <!-- Header / Banner -->
     <header class="header">
-        <div class="badge-freeship">
-            <span class="icon">🚀</span> MIỄN PHÍ VẬN CHUYỂN
+        <div class="badge-freeship" id="btnFreeship">
+            <span class="icon">🎁</span> LẤY MÃ FREESHIP
         </div>
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
@@ -63,9 +63,9 @@
                 <div class="timeline-content">
                     <h3>Hướng dẫn ấp trứng</h3>
                     <ul>
-                        <li>Bỏ trứng vào lồng nuôi, phun nước giữ ẩm thường xuyên (tránh khô/ngập nước).</li>
+                        <li>Bỏ trứng vào lồng nuôi, phun nước giữ ẩm thường xuyên.</li>
                         <li>Sau khoảng 10 ngày trứng sẽ nở. Mỗi trứng nở từ 15-30 con.</li>
-                        <li class="note">Lưu ý: Trứng có thể nở chậm do thiếu nhiệt (trời lạnh) hoặc thiếu ẩm. Trứng có thể nằm dưới đất 4-5 tháng chờ điều kiện thích hợp.</li>
+                        <li class="note">Lưu ý: Trứng có thể nở chậm do thiếu nhiệt hoặc thiếu ẩm.</li>
                     </ul>
                 </div>
             </div>
@@ -74,8 +74,8 @@
                 <div class="timeline-content">
                     <h3>Khắc phục trứng nở chậm</h3>
                     <ul>
-                        <li><strong>Bước 1:</strong> Mỗi sáng phun nước cho trứng ẩm (không để úng nước).</li>
-                        <li><strong>Bước 2:</strong> Phơi nắng dịu tầm 1h để lấy nhiệt (tránh nắng gắt).</li>
+                        <li><strong>Bước 1:</strong> Mỗi sáng phun nước cho trứng ẩm (không để úng).</li>
+                        <li><strong>Bước 2:</strong> Phơi nắng dịu tầm 1h để lấy nhiệt.</li>
                     </ul>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                 <div class="timeline-icon">3</div>
                 <div class="timeline-content">
                     <h3>Kiểm tra trứng</h3>
-                    <p>Tách nhẹ trứng ra quan sát. Nếu thấy trứng có màu xanh tức là đã sẵn sàng để nở.</p>
+                    <p>Tách nhẹ trứng ra quan sát. Nếu trứng có màu xanh tức là sắp nở.</p>
                 </div>
             </div>
             <div class="timeline-item">
@@ -91,28 +91,78 @@
                 <div class="timeline-content">
                     <h3>Chăm sóc cào non</h3>
                     <ul>
-                        <li>Cho ăn cỏ non trong những ngày đầu. Sau đó có thể cho ăn các loại cỏ khác.</li>
-                        <li>Tầm 10 ngày sau khi nở có thể thu hoạch dần để làm thức ăn cho chim cảnh.</li>
+                        <li>Cho ăn cỏ non trong những ngày đầu.</li>
+                        <li>Tầm 10 ngày sau khi nở có thể thu hoạch dần.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Order Form -->
-    <section class="order-section">
-        <div class="form-card">
-            <h2>ĐIỀN THÔNG TIN ĐẶT HÀNG</h2>
-            <p class="subtitle">Ưu đãi sẽ tự động áp dụng</p>
-            
+    <div style="height: 30px; background: #f9fafb;"></div> <!-- Spacer -->
+</div>
+
+<!-- Sticky Bottom Bar -->
+<div class="sticky-bottom-bar">
+    <div class="price-summary">
+        <span class="text">Chỉ từ</span>
+        <span class="price">99.000₫</span>
+    </div>
+    <button class="btn-buy-now" id="openOrderFormBtn">MUA NGAY</button>
+</div>
+
+<!-- Order Bottom Sheet Modal -->
+<div class="bottom-sheet-overlay" id="orderBottomSheetOverlay">
+    <div class="bottom-sheet-content" id="orderBottomSheet">
+        <div class="sheet-header">
+            <h3>ĐIỀN THÔNG TIN NHẬN HÀNG</h3>
+            <button class="btn-close-sheet" id="closeSheetBtn">&times;</button>
+        </div>
+        
+        <div class="sheet-body">
             <form id="orderForm">
+                
                 <div class="form-group">
-                    <label>Sản phẩm <span class="required">*</span></label>
-                    <select id="product" name="product" required>
-                        <option value="Trứng Cào Cào (Hộp 20 trứng)" data-price="99000">Hộp 20 trứng - 99.000₫ (Gốc 130K)</option>
-                        <option value="Trứng Cào Cào (Hộp 50 trứng)" data-price="199000">Hộp 50 trứng - 199.000₫ (Gốc 230K)</option>
-                        <option value="Trứng Cào Cào (Hộp 100 trứng)" data-price="299000" selected>Hộp 100 trứng - 299.000₫ (Gốc 330K)</option>
-                    </select>
+                    <label>Lựa chọn Sản phẩm <span class="required">*</span></label>
+                    <div class="product-cards">
+                        
+                        <label class="product-card">
+                            <input type="radio" name="product_radio" value="Trứng Cào Cào (Hộp 20 trứng)" data-price="99000">
+                            <div class="card-content">
+                                <span class="card-title">Hộp 20 trứng</span>
+                                <div class="card-prices">
+                                    <span class="card-price">99.000₫</span>
+                                    <del class="card-old-price">130K</del>
+                                </div>
+                                <div class="check-icon">✔️</div>
+                            </div>
+                        </label>
+
+                        <label class="product-card">
+                            <input type="radio" name="product_radio" value="Trứng Cào Cào (Hộp 50 trứng)" data-price="199000">
+                            <div class="card-content">
+                                <span class="card-title">Hộp 50 trứng</span>
+                                <div class="card-prices">
+                                    <span class="card-price">199.000₫</span>
+                                    <del class="card-old-price">230K</del>
+                                </div>
+                                <div class="check-icon">✔️</div>
+                            </div>
+                        </label>
+
+                        <label class="product-card">
+                            <input type="radio" name="product_radio" value="Trứng Cào Cào (Hộp 100 trứng)" data-price="299000" checked>
+                            <div class="card-content">
+                                <span class="card-title">Hộp 100 trứng <span class="badge-hot">HOT</span></span>
+                                <div class="card-prices">
+                                    <span class="card-price">299.000₫</span>
+                                    <del class="card-old-price">330K</del>
+                                </div>
+                                <div class="check-icon">✔️</div>
+                            </div>
+                        </label>
+
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -132,24 +182,14 @@
                 <div class="form-group">
                     <label>Số điện thoại <span class="required">*</span></label>
                     <input type="tel" id="phone" name="phone" placeholder="VD: 0935127132" required>
-                    <span class="error-message" id="phoneError">Số điện thoại không hợp lệ (cần 10 số bắt đầu bằng 0)</span>
+                    <span class="error-message" id="phoneError">Số điện thoại không hợp lệ</span>
                 </div>
 
                 <div class="form-group address-group">
                     <label>Địa chỉ giao hàng <span class="required">*</span></label>
-                    
-                    <select id="province" required>
-                        <option value="" disabled selected>Chọn Tỉnh/Thành phố</option>
-                    </select>
-                    
-                    <select id="district" required disabled>
-                        <option value="" disabled selected>Chọn Quận/Huyện</option>
-                    </select>
-                    
-                    <select id="ward" required disabled>
-                        <option value="" disabled selected>Chọn Phường/Xã</option>
-                    </select>
-
+                    <select id="province" required><option value="" disabled selected>Chọn Tỉnh/Thành phố</option></select>
+                    <select id="district" required disabled><option value="" disabled selected>Chọn Quận/Huyện</option></select>
+                    <select id="ward" required disabled><option value="" disabled selected>Chọn Phường/Xã</option></select>
                     <input type="text" id="street" placeholder="Nhập số nhà, tên đường, thôn/xóm..." required>
                 </div>
 
@@ -160,9 +200,9 @@
 
                 <!-- Tổng kết -->
                 <div class="summary-box">
-                    <div class="summary-row">
+                    <div class="summary-row" id="freeshipRow">
                         <span>Phí giao hàng:</span>
-                        <span class="free-ship">Miễn phí</span>
+                        <span class="free-ship" id="shipFeeText">30.000₫</span>
                     </div>
                     <div class="summary-row total-row">
                         <span>Tổng thanh toán:</span>
@@ -172,13 +212,15 @@
                 </div>
 
                 <button type="button" class="btn-submit" id="previewBtn">
-                    TIẾN HÀNH ĐẶT HÀNG
+                    XÁC NHẬN ĐẶT HÀNG
                 </button>
             </form>
         </div>
-    </section>
-
+    </div>
 </div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toastMessage">Đã lưu mã Freeship thành công! (12/30 lượt)</div>
 
 <!-- Loading overlay -->
 <div class="loading-overlay" id="loadingOverlay">
@@ -189,8 +231,8 @@
 <!-- Confirm Modal -->
 <div class="modal" id="confirmModal">
     <div class="modal-content confirm-box">
-        <h3>Xác Nhận Đơn Hàng</h3>
-        <p class="confirm-desc">Vui lòng kiểm tra lại thông tin trước khi chốt đơn.</p>
+        <h3>Hóa Đơn Tạm Tính</h3>
+        <p class="confirm-desc">Kiểm tra thông tin trước khi chốt đơn.</p>
         <div class="confirm-details">
             <p><strong>Người nhận:</strong> <span id="confName"></span></p>
             <p><strong>Điện thoại:</strong> <span id="confPhone"></span></p>
@@ -198,7 +240,7 @@
             <p><strong>Sản phẩm:</strong> <span id="confProduct"></span></p>
             <p><strong>Số lượng:</strong> <span id="confQuantity"></span></p>
             <hr>
-            <p class="conf-total"><strong>Tổng cộng:</strong> <span id="confTotal"></span></p>
+            <p class="conf-total"><strong>Cần Thanh Toán:</strong> <span id="confTotal"></span></p>
         </div>
         <div class="modal-actions">
             <button class="btn-cancel" onclick="closeConfirmModal()">Sửa lại</button>
