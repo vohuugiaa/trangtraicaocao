@@ -16,8 +16,8 @@
     
     <!-- Header / Banner -->
     <header class="header">
-        <div class="badge-freeship" id="btnFreeship">
-            <span class="icon">🎁</span> LẤY MÃ FREESHIP
+        <div class="badge-freeship-static">
+            <span class="icon">🚀</span> FREESHIP TOÀN QUỐC
         </div>
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
@@ -100,7 +100,7 @@
         </div>
     </section>
 
-    <div style="height: 30px; background: #f9fafb;"></div> <!-- Spacer -->
+    <div style="height: 30px; background: #f9fafb;"></div>
 </div>
 
 <!-- Sticky Bottom Bar -->
@@ -126,7 +126,6 @@
                 <div class="form-group">
                     <label>Lựa chọn Sản phẩm <span class="required">*</span></label>
                     <div class="product-cards">
-                        
                         <label class="product-card">
                             <input type="radio" name="product_radio" value="Trứng Cào Cào (Hộp 20 trứng)" data-price="99000">
                             <div class="card-content">
@@ -138,7 +137,6 @@
                                 <div class="check-icon">✔️</div>
                             </div>
                         </label>
-
                         <label class="product-card">
                             <input type="radio" name="product_radio" value="Trứng Cào Cào (Hộp 50 trứng)" data-price="199000">
                             <div class="card-content">
@@ -150,7 +148,6 @@
                                 <div class="check-icon">✔️</div>
                             </div>
                         </label>
-
                         <label class="product-card">
                             <input type="radio" name="product_radio" value="Trứng Cào Cào (Hộp 100 trứng)" data-price="299000" checked>
                             <div class="card-content">
@@ -162,7 +159,6 @@
                                 <div class="check-icon">✔️</div>
                             </div>
                         </label>
-
                     </div>
                 </div>
 
@@ -199,11 +195,17 @@
                     <input type="text" id="notes" name="notes" placeholder="VD: Giao giờ hành chính, gọi trước khi giao...">
                 </div>
 
+                <div class="form-group freeship-offer">
+                    <button type="button" id="formBtnFreeship" class="btn-freeship">
+                        <span class="fs-icon">🎁</span> BẤM LẤY MÃ FREESHIP <span class="fs-limit">(Còn 12 lượt)</span>
+                    </button>
+                </div>
+
                 <!-- Tổng kết -->
                 <div class="summary-box">
                     <div class="summary-row" id="freeshipRow">
                         <span>Phí giao hàng:</span>
-                        <span class="free-ship" id="shipFeeText"><span class="icon">🚀</span> Miễn phí toàn quốc</span>
+                        <span class="ship-fee" id="shipFeeText">30.000₫</span>
                     </div>
                     <div class="summary-row total-row">
                         <span>Tổng thanh toán:</span>
@@ -213,7 +215,7 @@
                 </div>
 
                 <button type="button" class="btn-submit" id="previewBtn">
-                    XÁC NHẬN ĐẶT HÀNG
+                    TIẾN HÀNH ĐẶT HÀNG
                 </button>
             </form>
         </div>
@@ -221,7 +223,7 @@
 </div>
 
 <!-- Toast Notification -->
-<div class="toast" id="toastMessage">Đã lưu mã Freeship thành công! (12/30 lượt)</div>
+<div class="toast" id="toastMessage">Đã lưu mã Freeship thành công! (11/30 lượt)</div>
 
 <!-- Loading overlay -->
 <div class="loading-overlay" id="loadingOverlay">
@@ -229,7 +231,31 @@
     <p>Đang xử lý...</p>
 </div>
 
-<!-- Confirm Modal -->
+<!-- Forget Freeship Prompt Modal -->
+<div class="modal" id="forgotFreeshipModal">
+    <div class="modal-content confirm-box">
+        <h3>Quên lưu mã Freeship?</h3>
+        <p class="confirm-desc">Bạn chưa áp dụng mã Miễn Phí Vận Chuyển. Bạn có muốn lưu mã để tiết kiệm 30.000₫ phí ship không?</p>
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="skipFreeship()">Bỏ qua (+30k Ship)</button>
+            <button class="btn-confirm" onclick="applyFreeshipNow()">Lưu Mã & Miễn Phí Ship</button>
+        </div>
+    </div>
+</div>
+
+<!-- Exit Confirm Modal -->
+<div class="modal" id="exitModal">
+    <div class="modal-content confirm-box">
+        <h3>Chờ đã! Bạn muốn rời đi?</h3>
+        <p class="confirm-desc">Sản phẩm chất lượng đang có mã giảm giá. Bạn có muốn tiếp tục xem sản phẩm để không bỏ lỡ cơ hội này không?</p>
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="confirmExit()">Vẫn thoát</button>
+            <button class="btn-confirm" onclick="stayOnPage()">Tiếp tục xem</button>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm Order Modal -->
 <div class="modal" id="confirmModal">
     <div class="modal-content confirm-box">
         <h3>Hóa Đơn Tạm Tính</h3>

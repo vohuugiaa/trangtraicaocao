@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. Khởi tạo Swiper
+    // Khởi tạo Swiper
     var swiper = new Swiper(".mySwiper", {
         pagination: { el: ".swiper-pagination", clickable: true },
         loop: true,
         autoplay: { delay: 3000, disableOnInteraction: false },
     });
 
-    // 2. Logic Đếm ngược Flash Sale
+    // Đếm ngược Flash Sale
     function startCountdown() {
         let totalSeconds = 2 * 3600 + 15 * 60 + 30;
         const timerElement = document.getElementById('countdownTimer');
@@ -22,49 +22,101 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     startCountdown();
 
-    // 3. Nút Lưu Mã Freeship (Chim mồi)
+    // Biến toàn cục
     let isFreeshipSaved = false;
-    const btnFreeship = document.getElementById('btnFreeship');
+    let isFormOpen = false;
+    
+    // Nút Lưu Mã Freeship trong form
+    const formBtnFreeship = document.getElementById('formBtnFreeship');
     const shipFeeText = document.getElementById('shipFeeText');
     const toastMessage = document.getElementById('toastMessage');
 
-    btnFreeship.addEventListener('click', function() {
+    formBtnFreeship.addEventListener('click', applyFreeshipAction);
+
+    function applyFreeshipAction() {
         if(!isFreeshipSaved) {
             isFreeshipSaved = true;
-            btnFreeship.classList.add('saved');
-            btnFreeship.innerHTML = '<span class="icon">✔️</span> ĐÃ LƯU MÃ';
+            formBtnFreeship.classList.add('saved');
+            formBtnFreeship.innerHTML = '<span class="fs-icon">✔️</span> ĐÃ LƯU MÃ FREESHIP';
             
-            // Random số lượt còn lại từ 5 - 15 để tạo FOMO
             const randomLeft = Math.floor(Math.random() * 10) + 5;
             toastMessage.textContent = `Đã lưu mã thành công! Chỉ còn ${randomLeft}/30 lượt hôm nay.`;
-            
-            // Hiển thị toast
             toastMessage.classList.add('show');
             setTimeout(() => { toastMessage.classList.remove('show'); }, 3500);
 
-            // Cập nhật text trong form
-            shipFeeText.textContent = 'Miễn phí (Đã áp mã)';
-            shipFeeText.style.color = 'var(--success)';
-            calculateTotal(); // Tính lại (nếu sau này có phí ship mặc định)
+            shipFeeText.textContent = 'Miễn phí';
+            shipFeeText.classList.add('free');
+            calculateTotal(); 
         }
-    });
+    }
 
-    // 4. Mở/Đóng Bottom Sheet Order
+    window.applyFreeshipNow = function() {
+        document.getElementById('forgotFreeshipModal').style.display = 'none';
+        applyFreeshipAction();
+        showConfirmModal();
+    }
+    
+    window.skipFreeship = function() {
+        document.getElementById('forgotFreeshipModal').style.display = 'none';
+        showConfirmModal();
+    }
+
+    // Mở/Đóng Bottom Sheet Order & Push State
     const openOrderFormBtn = document.getElementById('openOrderFormBtn');
     const closeSheetBtn = document.getElementById('closeSheetBtn');
     const orderBottomSheetOverlay = document.getElementById('orderBottomSheetOverlay');
 
+    // Chặn phím back
+    history.replaceState({page: 'home'}, '', window.location.href);
+
     openOrderFormBtn.addEventListener('click', () => {
         orderBottomSheetOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Ngăn cuộn trang phía sau
+        document.body.style.overflow = 'hidden';
+        isFormOpen = true;
+        history.pushState({page: 'form'}, '', window.location.href + '#order');
     });
     
     closeSheetBtn.addEventListener('click', () => {
-        orderBottomSheetOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+        closeBottomSheet();
+        if(history.state && history.state.page === 'form') {
+            history.back(); // Đồng bộ lại url
+        }
     });
 
-    // 5. Logic API Tỉnh/Huyện/Xã
+    function closeBottomSheet() {
+        orderBottomSheetOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        isFormOpen = false;
+    }
+
+    // Lắng nghe sự kiện Back (Popstate)
+    window.addEventListener('popstate', function(e) {
+        if (isFormOpen) {
+            // Đang mở form mà bấm back -> Đóng form
+            closeBottomSheet();
+            // Trạng thái hiện tại đã về 'home' do trình duyệt tự pop
+        } else {
+            // Đang ở ngoài trang chủ mà bấm back -> Bật thông báo
+            const exitModal = document.getElementById('exitModal');
+            if (exitModal.style.display !== 'flex') {
+                // Nhét lại một state để không bị thoát ra trang trước đó
+                history.pushState({page: 'home'}, '', window.location.href);
+                exitModal.style.display = 'flex';
+            }
+        }
+    });
+
+    window.stayOnPage = function() {
+        document.getElementById('exitModal').style.display = 'none';
+    }
+
+    window.confirmExit = function() {
+        document.getElementById('exitModal').style.display = 'none';
+        // Cho phép thoát thật bằng cách nhảy lui 2 bước
+        history.go(-2);
+    }
+
+    // Logic API Tỉnh/Huyện/Xã
     const provinceSelect = document.getElementById('province');
     const districtSelect = document.getElementById('district');
     const wardSelect = document.getElementById('ward');
@@ -77,12 +129,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.value = p.name; option.textContent = p.name;
                 provinceSelect.appendChild(option);
             });
-
             provinceSelect.addEventListener('change', function() {
                 districtSelect.innerHTML = '<option value="" disabled selected>Chọn Quận/Huyện</option>';
                 wardSelect.innerHTML = '<option value="" disabled selected>Chọn Phường/Xã</option>';
                 districtSelect.disabled = false; wardSelect.disabled = true;
-
                 const selectedProvince = data.find(p => p.name === this.value);
                 if(selectedProvince && selectedProvince.districts) {
                     selectedProvince.districts.forEach(d => {
@@ -92,7 +142,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             });
-
             districtSelect.addEventListener('change', function() {
                 wardSelect.innerHTML = '<option value="" disabled selected>Chọn Phường/Xã</option>';
                 wardSelect.disabled = false;
@@ -106,9 +155,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             });
-        }).catch(err => console.log('Lỗi tải API:', err));
+        }).catch(err => console.log('Lỗi API', err));
 
-    // 6. Logic Tính Tiền & Radio Cards
+    // Logic Tính Tiền
     const productRadios = document.querySelectorAll('input[name="product_radio"]');
     const quantityInput = document.getElementById('quantity');
     const btnMinus = document.getElementById('btn-minus');
@@ -119,22 +168,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function formatCurrency(number) { return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "₫"; }
 
     function calculateTotal() {
-        // Tìm radio đang được check
         const checkedRadio = document.querySelector('input[name="product_radio"]:checked');
         const price = parseInt(checkedRadio.getAttribute('data-price'));
         const quantity = parseInt(quantityInput.value);
         
-        let shipFee = 0; // Luôn freeship
-        const total = (price * quantity) + shipFee;
+        let shipFee = isFreeshipSaved ? 0 : 30000; 
         
+        const total = (price * quantity) + shipFee;
         totalPriceDisplay.textContent = formatCurrency(total);
         totalInput.value = total;
     }
 
-    productRadios.forEach(radio => {
-        radio.addEventListener('change', calculateTotal);
-    });
-
+    productRadios.forEach(radio => { radio.addEventListener('change', calculateTotal); });
     btnMinus.addEventListener('click', () => {
         let qty = parseInt(quantityInput.value);
         if (qty > 1) { quantityInput.value = qty - 1; calculateTotal(); }
@@ -143,9 +188,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let qty = parseInt(quantityInput.value);
         quantityInput.value = qty + 1; calculateTotal();
     });
-    calculateTotal(); // Chạy lần đầu
+    calculateTotal(); 
 
-    // 7. Validate Phone
+    // Validate Phone
     const phoneInput = document.getElementById('phone');
     const phoneRegex = /^(03|05|07|08|09)[0-9]{8}$/;
     phoneInput.addEventListener('input', function() {
@@ -153,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
         else { this.classList.remove('is-invalid'); }
     });
 
-    // 8. Confirm Modal & Gửi Sheets
+    // Validate & Bật Confirm Modal
     const previewBtn = document.getElementById('previewBtn');
     const confirmModal = document.getElementById('confirmModal');
     const orderForm = document.getElementById('orderForm');
@@ -162,6 +207,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!orderForm.checkValidity()) { orderForm.reportValidity(); return; }
         if(phoneInput.classList.contains('is-invalid')) { alert('Vui lòng kiểm tra lại số điện thoại.'); phoneInput.focus(); return; }
 
+        if (!isFreeshipSaved) {
+            // Hiện popup quên lưu mã
+            document.getElementById('forgotFreeshipModal').style.display = 'flex';
+        } else {
+            showConfirmModal();
+        }
+    });
+
+    function showConfirmModal() {
         const addressFull = `${document.getElementById('street').value}, ${document.getElementById('ward').value}, ${document.getElementById('district').value}, ${document.getElementById('province').value}`;
         const checkedRadio = document.querySelector('input[name="product_radio"]:checked');
 
@@ -173,16 +227,16 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('confTotal').textContent = formatCurrency(totalInput.value);
 
         confirmModal.style.display = 'flex';
-    });
+    }
 
-    const GOOGLE_SCRIPT_URL = 'THAY_URL_CUA_BAN_VAO_DAY'; 
+
+    // Gửi form
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxR55m-6TAXw8hmAlI4tj5rv9TZIAc7RbyYzWlCgi2RZqtQIUQnrH0WTPhfeEqN3QN4Zw/exec'; 
     const confirmSubmitBtn = document.getElementById('confirmSubmitBtn');
     const loadingOverlay = document.getElementById('loadingOverlay');
     const successModal = document.getElementById('successModal');
 
     confirmSubmitBtn.addEventListener('click', function() {
-        if(GOOGLE_SCRIPT_URL === 'THAY_URL_CUA_BAN_VAO_DAY') { alert('LỖI: Chưa cấu hình đường dẫn Google Apps Script trong script.js.'); return; }
-
         confirmModal.style.display = 'none';
         loadingOverlay.style.display = 'flex';
 
@@ -204,8 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(() => {
             loadingOverlay.style.display = 'none';
-            orderBottomSheetOverlay.classList.remove('active'); // Đóng bottom sheet
-            document.body.style.overflow = '';
+            closeBottomSheet();
             successModal.style.display = 'flex';
             orderForm.reset();
             districtSelect.disabled = true;
@@ -219,5 +272,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-function closeConfirmModal() { document.getElementById('confirmModal').style.display = 'none'; }
-function closeSuccessModal() { document.getElementById('successModal').style.display = 'none'; }
+window.closeConfirmModal = function() { document.getElementById('confirmModal').style.display = 'none'; }
+window.closeSuccessModal = function() { document.getElementById('successModal').style.display = 'none'; }
