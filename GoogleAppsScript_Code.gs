@@ -1,6 +1,6 @@
 function doPost(e) {
   try {
-    // 1. Kết nối Google Sheet đích danh
+    // 1. Kết nối Google Sheet
     var sheetUrl = "https://docs.google.com/spreadsheets/d/1TfaUtjkNb0ohrP4zcUN-Mw75Ain5XZojFxQEABCFhdU/edit?gid=0#gid=0";
     var sheet = SpreadsheetApp.openByUrl(sheetUrl).getSheets()[0];
     
@@ -18,7 +18,7 @@ function doPost(e) {
     // Format hiển thị tiền VNĐ (VD: 299000 -> 299.000₫)
     var formattedTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "₫";
 
-    // 2. Ghi dữ liệu vào Google Sheet (thêm ' để không mất số 0)
+    // 2. Ghi dữ liệu vào Google Sheet (thêm ' để giữ số 0 ở đầu)
     var row = [
       formattedTime,
       product,
@@ -70,7 +70,26 @@ function doPost(e) {
   }
 }
 
+// Hàm hỗ trợ chống lỗi ký tự trên Telegram
 function escapeHtml(text) {
   if (!text) return "";
   return text.toString().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// HÀM TEST BẮN TIN NHẮN THỬ VÀO TELEGRAM
+function testTelegram() {
+  var botToken = "8939516474:AAGQ2NED9XLR2V2Es0pbAcGb7MOhKKgKAA8";
+  var chatId = "-5589087762";
+  var url = "https://api.telegram.org/bot" + botToken + "/sendMessage";
+  var payload = {
+    "chat_id": chatId,
+    "text": "🎉 Chúc mừng! Bot Telegram đã kết nối thành công với Google Sheets!",
+    "parse_mode": "HTML"
+  };
+  var res = UrlFetchApp.fetch(url, {
+    "method": "post",
+    "contentType": "application/json",
+    "payload": JSON.stringify(payload)
+  });
+  Logger.log(res.getContentText());
 }
