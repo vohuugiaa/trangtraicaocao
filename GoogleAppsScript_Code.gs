@@ -1,6 +1,8 @@
 function doPost(e) {
   try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    // 1. Kết nối Google Sheet đích danh
+    var sheetUrl = "https://docs.google.com/spreadsheets/d/1TfaUtjkNb0ohrP4zcUN-Mw75Ain5XZojFxQEABCFhdU/edit?gid=0#gid=0";
+    var sheet = SpreadsheetApp.openByUrl(sheetUrl).getSheets()[0];
     
     var time = new Date();
     var formattedTime = Utilities.formatDate(time, "GMT+7", "dd/MM/yyyy HH:mm:ss");
@@ -16,7 +18,7 @@ function doPost(e) {
     // Format hiển thị tiền VNĐ (VD: 299000 -> 299.000₫)
     var formattedTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "₫";
 
-    // 1. Ghi vào Google Sheet (thêm dấu ' trước SĐT để giữ số 0 ở đầu)
+    // 2. Ghi dữ liệu vào Google Sheet (thêm ' để không mất số 0)
     var row = [
       formattedTime,
       product,
@@ -29,7 +31,7 @@ function doPost(e) {
     ];
     sheet.appendRow(row);
 
-    // 2. Gửi thông báo đến Telegram
+    // 3. Gửi thông báo đến nhóm Telegram
     var botToken = "8939516474:AAGQ2NED9XLR2V2Es0pbAcGb7MOhKKgKAA8";
     var chatId = "-5589087762";
 
