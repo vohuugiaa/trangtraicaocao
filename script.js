@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (comboQtyGroup) comboQtyGroup.style.display = 'none';
 
             let eggQty = parseInt(customEggQuantity.value) || 2500;
-            if (eggQty < 100) eggQty = 100;
+            if (eggQty < 2500) eggQty = 2500;
             price = eggQty * 1600;
             if (customPricePreview) customPricePreview.textContent = formatCurrency(price);
         } else {
@@ -225,18 +225,30 @@ document.addEventListener('DOMContentLoaded', function() {
         btnEggMinus.addEventListener('click', (e) => {
             e.preventDefault();
             let val = parseInt(customEggQuantity.value) || 2500;
-            if (val > 500) {
-                customEggQuantity.value = val - 100;
+            if (val > 2500) {
+                let newVal = val - 100;
+                if (newVal < 2500) newVal = 2500;
+                customEggQuantity.value = newVal;
                 calculateTotal();
             }
         });
         btnEggPlus.addEventListener('click', (e) => {
             e.preventDefault();
             let val = parseInt(customEggQuantity.value) || 2500;
+            if (val < 2500) val = 2500;
             customEggQuantity.value = val + 100;
             calculateTotal();
         });
-        customEggQuantity.addEventListener('input', calculateTotal);
+        customEggQuantity.addEventListener('input', () => {
+            calculateTotal();
+        });
+        customEggQuantity.addEventListener('change', () => {
+            let val = parseInt(customEggQuantity.value) || 2500;
+            if (val < 2500) {
+                customEggQuantity.value = 2500;
+            }
+            calculateTotal();
+        });
     }
 
     calculateTotal(); 
@@ -275,8 +287,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (checkedRadio.getAttribute('data-price') === 'custom') {
             let eggQty = parseInt(customEggQuantity.value) || 2500;
+            if (eggQty < 2500) eggQty = 2500;
             displayProduct = `Trứng Cào Cào (Tùy chọn ${eggQty.toLocaleString('vi-VN')} trứng)`;
-            displayQuantity = `${eggQty.toLocaleString('vi-VN')} quả (1.600₫/quả)`;
+            displayQuantity = `${eggQty.toLocaleString('vi-VN')} trứng`;
         }
 
         document.getElementById('confName').textContent = document.getElementById('fullname').value;
@@ -308,7 +321,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (checkedRadio.getAttribute('data-price') === 'custom') {
             let eggQty = parseInt(customEggQuantity.value) || 2500;
-            finalProduct = `Trứng Cào Cào (Tùy chọn ${eggQty} quả)`;
+            if (eggQty < 2500) eggQty = 2500;
+            finalProduct = `Trứng Cào Cào (Tùy chọn ${eggQty} trứng)`;
             finalQuantity = eggQty.toString();
         }
 
