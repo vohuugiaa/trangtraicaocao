@@ -7,6 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
         autoplay: { delay: 3000, disableOnInteraction: false },
     });
 
+    // Tự động dừng lướt ảnh khi người dùng bấm phát Video
+    const albumVideo = document.getElementById('albumVideo');
+    if (albumVideo) {
+        albumVideo.addEventListener('play', () => { if (swiper.autoplay) swiper.autoplay.stop(); });
+        albumVideo.addEventListener('pause', () => { if (swiper.autoplay) swiper.autoplay.start(); });
+        albumVideo.addEventListener('ended', () => { if (swiper.autoplay) swiper.autoplay.start(); });
+    }
+
     // Đếm ngược Flash Sale
     function startCountdown() {
         let totalSeconds = 2 * 3600 + 15 * 60 + 30;
@@ -165,16 +173,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalPriceDisplay = document.getElementById('totalPriceDisplay');
     const totalInput = document.getElementById('totalInput');
 
+    const customQtyContainer = document.getElementById('customQtyContainer');
+    const customEggQuantity = document.getElementById('customEggQuantity');
+    const btnEggMinus = document.getElementById('btnEggMinus');
+    const btnEggPlus = document.getElementById('btnEggPlus');
+    const customPricePreview = document.getElementById('customPricePreview');
+    const comboQtyGroup = document.getElementById('comboQtyGroup');
+
     function formatCurrency(number) { return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "₫"; }
 
     function calculateTotal() {
         const checkedRadio = document.querySelector('input[name="product_radio"]:checked');
-        const price = parseInt(checkedRadio.getAttribute('data-price'));
-        const quantity = parseInt(quantityInput.value);
-        
-        let shipFee = isFreeshipSaved ? 0 : 30000; 
-        
-        const total = (price * quantity) + shipFee;
+        if (!checkedRadio) return;
+
+        let price = 0;
+        let shipFee = isFreeshipSaved ? 0 : 30000;
+
+        if (checkedRadio.getAttribute('data-price') === 'custom') {
+            if (customQtyContainer) customQtyContainer.style.display = 'block';
+            if (comboQtyGroup) comboQtyGroup.style.display = 'none';
+
+            let eggQty = parseInt(customEggQuantity.value) || 2500;
+            if (eggQty < 100) eggQty = 100;
+            price = eggQty * 1600;
+            if (customPricePreview) customPricePreview.textContent = formatCurrency(price);
+        } else {
+            if (customQtyContainer) customQtyContainer.style.display = 'none';
+            if (comboQtyGroup) comboQtyGroup.style.display = 'block';
+
+            const basePrice = parseInt(checkedRadio.getAttribute('data-price')) || 0;
+            const quantity = parseInt(quantityInput.value) || 1;
+            price = basePrice * quantity;
+        }
+
+        const total = price + shipFee;
         totalPriceDisplay.textContent = formatCurrency(total);
         totalInput.value = total;
     }
@@ -188,6 +220,25 @@ document.addEventListener('DOMContentLoaded', function() {
         let qty = parseInt(quantityInput.value);
         quantityInput.value = qty + 1; calculateTotal();
     });
+
+    if (btnEggMinus && btnEggPlus && customEggQuantity) {
+        btnEggMinus.addEventListener('click', (e) => {
+            e.preventDefault();
+            let val = parseInt(customEggQuantity.value) || 2500;
+            if (val > 500) {
+                customEggQuantity.value = val - 100;
+                calculateTotal();
+            }
+        });
+        btnEggPlus.addEventListener('click', (e) => {
+            e.preventDefault();
+            let val = parseInt(customEggQuantity.value) || 2500;
+            customEggQuantity.value = val + 100;
+            calculateTotal();
+        });
+        customEggQuantity.addEventListener('input', calculateTotal);
+    }
+
     calculateTotal(); 
 
     // Validate Phone
@@ -219,11 +270,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const addressFull = `${document.getElementById('street').value}, ${document.getElementById('ward').value}, ${document.getElementById('district').value}, ${document.getElementById('province').value}`;
         const checkedRadio = document.querySelector('input[name="product_radio"]:checked');
 
+        let displayProduct = checkedRadio.value;
+        let displayQuantity = quantityInput.value + " gói";
+
+        if (checkedRadio.getAttribute('data-price') === 'custom') {
+            let eggQty = parseInt(customEggQuantity.value) || 2500;
+            displayProduct = `Trứng Cào Cào (Tùy chọn ${eggQty.toLocaleString('vi-VN')} trứng)`;
+            displayQuantity = `${eggQty.toLocaleString('vi-VN')} quả (1.600₫/quả)`;
+        }
+
         document.getElementById('confName').textContent = document.getElementById('fullname').value;
         document.getElementById('confPhone').textContent = phoneInput.value;
         document.getElementById('confAddress').textContent = addressFull;
-        document.getElementById('confProduct').textContent = checkedRadio.value;
-        document.getElementById('confQuantity').textContent = quantityInput.value;
+        document.getElementById('confProduct').textContent = displayProduct;
+        document.getElementById('confQuantity').textContent = displayQuantity;
         document.getElementById('confTotal').textContent = formatCurrency(totalInput.value);
 
         confirmModal.style.display = 'flex';
@@ -243,8 +303,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const submitData = new FormData();
         const checkedRadio = document.querySelector('input[name="product_radio"]:checked');
         
-        submitData.append('product', checkedRadio.value);
-        submitData.append('quantity', quantityInput.value);
+        let finalProduct = checkedRadio.value;
+        let finalQuantity = quantityInput.value;
+
+        if (checkedRadio.getAttribute('data-price') === 'custom') {
+            let eggQty = parseInt(customEggQuantity.value) || 2500;
+            finalProduct = `Trứng Cào Cào (Tùy chọn ${eggQty} quả)`;
+            finalQuantity = eggQty.toString();
+        }
+
+        submitData.append('product', finalProduct);
+        submitData.append('quantity', finalQuantity);
         submitData.append('fullname', document.getElementById('fullname').value);
         submitData.append('phone', phoneInput.value);
         submitData.append('notes', document.getElementById('notes').value);
