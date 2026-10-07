@@ -69,19 +69,55 @@ document.addEventListener('DOMContentLoaded', function() {
         showConfirmModal();
     }
 
-    // Mở/Đóng Bottom Sheet Order & Push State
+    // Multi-step & Bottom Sheet Order
+    let currentStep = 1;
     const openOrderFormBtn = document.getElementById('openOrderFormBtn');
     const closeSheetBtn = document.getElementById('closeSheetBtn');
     const orderBottomSheetOverlay = document.getElementById('orderBottomSheetOverlay');
+    const sheetBody = document.getElementById('sheetBody');
+    const sheetStepBadge = document.getElementById('sheetStepBadge');
+    const sheetMainTitle = document.getElementById('sheetMainTitle');
+    const btnBackToStep1 = document.getElementById('btnBackToStep1');
+    const btnNextToStep2 = document.getElementById('btnNextToStep2');
+    const btnChangeVariant = document.getElementById('btnChangeVariant');
+
+    const step1Product = document.getElementById('step1Product');
+    const step2Shipping = document.getElementById('step2Shipping');
+    const step1Subtotal = document.getElementById('step1Subtotal');
+    const step1GiftNotice = document.getElementById('step1GiftNotice');
+    const step2SelectedName = document.getElementById('step2SelectedName');
+    const step2SelectedDetail = document.getElementById('step2SelectedDetail');
+    const step2SelectedPrice = document.getElementById('step2SelectedPrice');
+    const goodsPriceText = document.getElementById('goodsPriceText');
+
+    function goToStep(step) {
+        currentStep = step;
+        if (step === 1) {
+            if (step1Product) step1Product.style.display = 'block';
+            if (step2Shipping) step2Shipping.style.display = 'none';
+            if (btnBackToStep1) btnBackToStep1.style.display = 'none';
+            if (sheetStepBadge) sheetStepBadge.textContent = 'Bước 1/2';
+            if (sheetMainTitle) sheetMainTitle.textContent = 'CHỌN GÓI SẢN PHẨM';
+        } else {
+            if (step1Product) step1Product.style.display = 'none';
+            if (step2Shipping) step2Shipping.style.display = 'block';
+            if (btnBackToStep1) btnBackToStep1.style.display = 'inline-flex';
+            if (sheetStepBadge) sheetStepBadge.textContent = 'Bước 2/2';
+            if (sheetMainTitle) sheetMainTitle.textContent = 'ĐỊA CHỈ NHẬN HÀNG';
+            updateStep2Summary();
+        }
+        if (sheetBody) sheetBody.scrollTop = 0;
+    }
 
     // Chặn phím back
     history.replaceState({page: 'home'}, '', window.location.href);
 
     openOrderFormBtn.addEventListener('click', () => {
+        goToStep(1);
         orderBottomSheetOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
         isFormOpen = true;
-        history.pushState({page: 'form'}, '', window.location.href + '#order');
+        history.pushState({page: 'form', step: 1}, '', window.location.href.split('#')[0] + '#order');
     });
     
     closeSheetBtn.addEventListener('click', () => {
@@ -95,20 +131,24 @@ document.addEventListener('DOMContentLoaded', function() {
         orderBottomSheetOverlay.classList.remove('active');
         document.body.style.overflow = '';
         isFormOpen = false;
+        goToStep(1);
     }
 
     // Lắng nghe sự kiện Back (Popstate)
     window.addEventListener('popstate', function(e) {
         if (isFormOpen) {
-            // Đang mở form mà bấm back -> Đóng form
-            closeBottomSheet();
-            // Trạng thái hiện tại đã về 'home' do trình duyệt tự pop
+            if (currentStep === 2) {
+                // Đang ở bước 2 bấm back -> quay lại bước 1
+                goToStep(1);
+            } else {
+                // Đang ở bước 1 bấm back -> đóng form
+                closeBottomSheet();
+            }
         } else {
             // Đang ở ngoài trang chủ mà bấm back -> Bật thông báo
             const exitModal = document.getElementById('exitModal');
-            if (exitModal.style.display !== 'flex') {
-                // Nhét lại một state để không bị thoát ra trang trước đó
-                history.pushState({page: 'home'}, '', window.location.href);
+            if (exitModal && exitModal.style.display !== 'flex') {
+                history.pushState({page: 'home'}, '', window.location.href.split('#')[0]);
                 exitModal.style.display = 'flex';
             }
         }
@@ -122,6 +162,42 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('exitModal').style.display = 'none';
         // Cho phép thoát thật bằng cách nhảy lui 2 bước
         history.go(-2);
+    }
+
+    if (btnNextToStep2) {
+        btnNextToStep2.addEventListener('click', () => {
+            const checkedRadio = document.querySelector('input[name="product_radio"]:checked');
+            if (checkedRadio && checkedRadio.getAttribute('data-price') === 'custom') {
+                let eggQty = parseInt(customEggQuantity.value) || 0;
+                if (eggQty < 2500) {
+                    alert('Số lượng tối thiểu là 2.500 trứng. Vui lòng nhập từ 2.500 trở lên.');
+                    customEggQuantity.value = 2500;
+                    calculateTotal();
+                    customEggQuantity.focus();
+                    return;
+                }
+            }
+            goToStep(2);
+            history.pushState({page: 'form', step: 2}, '', window.location.href.split('#')[0] + '#order-step2');
+        });
+    }
+
+    if (btnBackToStep1) {
+        btnBackToStep1.addEventListener('click', () => {
+            goToStep(1);
+            if (history.state && history.state.step === 2) {
+                history.back();
+            }
+        });
+    }
+
+    if (btnChangeVariant) {
+        btnChangeVariant.addEventListener('click', () => {
+            goToStep(1);
+            if (history.state && history.state.step === 2) {
+                history.back();
+            }
+        });
     }
 
     // Logic API Tỉnh/Huyện/Xã
@@ -182,6 +258,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function formatCurrency(number) { return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "₫"; }
 
+    function updateStep2Summary() {
+        const checkedRadio = document.querySelector('input[name="product_radio"]:checked');
+        if (!checkedRadio) return;
+
+        let price = 0;
+        if (checkedRadio.getAttribute('data-price') === 'custom') {
+            let eggQty = parseInt(customEggQuantity.value) || 2500;
+            if (eggQty < 2500) eggQty = 2500;
+            let bonusEggs = Math.round(eggQty * 0.1);
+            price = eggQty * 1600;
+
+            if (step2SelectedName) step2SelectedName.textContent = `Tự chọn ${eggQty.toLocaleString('vi-VN')} trứng`;
+            if (step2SelectedDetail) step2SelectedDetail.textContent = `⚡ Tặng kèm: +${bonusEggs.toLocaleString('vi-VN')} trứng (10%)`;
+            if (step2SelectedPrice) step2SelectedPrice.textContent = formatCurrency(price);
+        } else {
+            const basePrice = parseInt(checkedRadio.getAttribute('data-price')) || 0;
+            const qty = parseInt(quantityInput.value) || 1;
+            price = basePrice * qty;
+            const bonus = checkedRadio.getAttribute('data-bonus') || '+10% trứng';
+
+            if (step2SelectedName) step2SelectedName.textContent = checkedRadio.value;
+            if (step2SelectedDetail) step2SelectedDetail.textContent = `Số lượng: ${qty} gói • 🎁 Tặng kèm ${bonus}`;
+            if (step2SelectedPrice) step2SelectedPrice.textContent = formatCurrency(price);
+        }
+        if (goodsPriceText) goodsPriceText.textContent = formatCurrency(price);
+    }
+
     function calculateTotal() {
         const checkedRadio = document.querySelector('input[name="product_radio"]:checked');
         if (!checkedRadio) return;
@@ -197,6 +300,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (eggQty < 2500) eggQty = 2500;
             price = eggQty * 1600;
             if (customPricePreview) customPricePreview.textContent = formatCurrency(price);
+
+            let bonusEggs = Math.round(eggQty * 0.1);
+            if (step1Subtotal) step1Subtotal.textContent = formatCurrency(price);
+            if (step1GiftNotice) step1GiftNotice.textContent = `🎁 Đã gồm: Tặng thêm +${bonusEggs.toLocaleString('vi-VN')} trứng (10%)`;
         } else {
             if (customQtyContainer) customQtyContainer.style.display = 'none';
             if (comboQtyGroup) comboQtyGroup.style.display = 'block';
@@ -204,11 +311,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const basePrice = parseInt(checkedRadio.getAttribute('data-price')) || 0;
             const quantity = parseInt(quantityInput.value) || 1;
             price = basePrice * quantity;
+
+            const bonus = checkedRadio.getAttribute('data-bonus') || '+10% trứng';
+            if (step1Subtotal) step1Subtotal.textContent = formatCurrency(price);
+            if (step1GiftNotice) step1GiftNotice.textContent = `🎁 Đã gồm: Tặng thêm ${bonus}`;
         }
+
+        if (goodsPriceText) goodsPriceText.textContent = formatCurrency(price);
 
         const total = price + shipFee;
         totalPriceDisplay.textContent = formatCurrency(total);
         totalInput.value = total;
+
+        updateStep2Summary();
     }
 
     productRadios.forEach(radio => { radio.addEventListener('change', calculateTotal); });
@@ -288,8 +403,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (checkedRadio.getAttribute('data-price') === 'custom') {
             let eggQty = parseInt(customEggQuantity.value) || 2500;
             if (eggQty < 2500) eggQty = 2500;
-            displayProduct = `Trứng Cào Cào (Tùy chọn ${eggQty.toLocaleString('vi-VN')} trứng)`;
+            let bonusEggs = Math.round(eggQty * 0.1);
+            displayProduct = `Trứng Cào Cào (Tùy chọn ${eggQty.toLocaleString('vi-VN')} trứng + Tặng ${bonusEggs.toLocaleString('vi-VN')} trứng)`;
             displayQuantity = `${eggQty.toLocaleString('vi-VN')} trứng`;
+        } else {
+            const bonus = checkedRadio.getAttribute('data-bonus') || '+10% trứng';
+            displayProduct = `${checkedRadio.value} (Tặng ${bonus})`;
         }
 
         document.getElementById('confName').textContent = document.getElementById('fullname').value;
@@ -322,8 +441,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (checkedRadio.getAttribute('data-price') === 'custom') {
             let eggQty = parseInt(customEggQuantity.value) || 2500;
             if (eggQty < 2500) eggQty = 2500;
-            finalProduct = `Trứng Cào Cào (Tùy chọn ${eggQty} trứng)`;
+            let bonusEggs = Math.round(eggQty * 0.1);
+            finalProduct = `Trứng Cào Cào (Tùy chọn ${eggQty} trứng + Tặng ${bonusEggs} trứng)`;
             finalQuantity = eggQty.toString();
+        } else {
+            const bonus = checkedRadio.getAttribute('data-bonus') || '+10% trứng';
+            finalProduct = `${checkedRadio.value} (Tặng ${bonus})`;
         }
 
         submitData.append('product', finalProduct);
@@ -344,6 +467,7 @@ document.addEventListener('DOMContentLoaded', function() {
             closeBottomSheet();
             successModal.style.display = 'flex';
             orderForm.reset();
+            goToStep(1);
             districtSelect.disabled = true;
             wardSelect.disabled = true;
             calculateTotal();

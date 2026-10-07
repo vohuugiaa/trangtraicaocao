@@ -153,167 +153,216 @@
 <div class="bottom-sheet-overlay" id="orderBottomSheetOverlay">
     <div class="bottom-sheet-content" id="orderBottomSheet">
         <div class="sheet-header">
-            <h3>ĐIỀN THÔNG TIN NHẬN HÀNG</h3>
-            <button class="btn-close-sheet" id="closeSheetBtn">&times;</button>
+            <div class="sheet-header-left">
+                <button type="button" class="btn-back-sheet" id="btnBackToStep1" style="display: none;">
+                    ← Đổi gói
+                </button>
+                <div class="sheet-title-box">
+                    <span class="sheet-step-badge" id="sheetStepBadge">Bước 1/2</span>
+                    <h3 id="sheetMainTitle">CHỌN GÓI SẢN PHẨM</h3>
+                </div>
+            </div>
+            <button type="button" class="btn-close-sheet" id="closeSheetBtn">&times;</button>
         </div>
         
-        <div class="sheet-body">
+        <div class="sheet-body" id="sheetBody">
             <form id="orderForm">
                 
-                <div class="form-group">
-                    <label>Lựa chọn Sản phẩm <span class="required">*</span></label>
-                    <div class="product-cards">
-                        <label class="product-card">
-                            <input type="radio" name="product_radio" value="Trứng Cào Cào (50 trứng)" data-price="149000" checked>
-                            <div class="card-content">
-                                <span class="card-title">50 trứng <span class="badge-gift">🎁 Tặng +5 trứng (10%)</span></span>
-                                <div class="card-prices">
-                                    <span class="card-price">149.000₫</span>
-                                    <del class="card-old-price">190K</del>
-                                </div>
-                                <div class="check-icon">✔️</div>
-                            </div>
-                        </label>
-                        <label class="product-card">
-                            <input type="radio" name="product_radio" value="Trứng Cào Cào (100 trứng)" data-price="270000">
-                            <div class="card-content">
-                                <span class="card-title">100 trứng <span class="badge-gift">🎁 Tặng +10 trứng (10%)</span></span>
-                                <div class="card-prices">
-                                    <span class="card-price">270.000₫</span>
-                                    <del class="card-old-price">320K</del>
-                                </div>
-                                <div class="check-icon">✔️</div>
-                            </div>
-                        </label>
-                        <label class="product-card">
-                            <input type="radio" name="product_radio" value="Trứng Cào Cào (200 trứng)" data-price="500000">
-                            <div class="card-content">
-                                <span class="card-title">200 trứng <span class="badge-gift">🎁 Tặng +20 trứng (10%)</span></span>
-                                <div class="card-prices">
-                                    <span class="card-price">500.000₫</span>
-                                    <del class="card-old-price">600K</del>
-                                </div>
-                                <div class="check-icon">✔️</div>
-                            </div>
-                        </label>
-                        <label class="product-card">
-                            <input type="radio" name="product_radio" value="Trứng Cào Cào (500 trứng)" data-price="1000000">
-                            <div class="card-content">
-                                <span class="card-title">500 trứng <span class="badge-hot">BÁN CHẠY</span> <span class="badge-gift">🎁 Tặng +50 trứng (10%)</span></span>
-                                <div class="card-prices">
-                                    <span class="card-price">1.000.000₫</span>
-                                    <del class="card-old-price">1.2Tr</del>
-                                </div>
-                                <div class="check-icon">✔️</div>
-                            </div>
-                        </label>
-                        <label class="product-card">
-                            <input type="radio" name="product_radio" value="Trứng Cào Cào (1000 trứng)" data-price="1800000">
-                            <div class="card-content">
-                                <span class="card-title">1.000 trứng <span class="badge-gift">🎁 Tặng +100 trứng (10%)</span></span>
-                                <div class="card-prices">
-                                    <span class="card-price">1.800.000₫</span>
-                                    <del class="card-old-price">2.1Tr</del>
-                                </div>
-                                <div class="check-icon">✔️</div>
-                            </div>
-                        </label>
-                        <label class="product-card">
-                            <input type="radio" name="product_radio" value="Trứng Cào Cào (2000 trứng)" data-price="3500000">
-                            <div class="card-content">
-                                <span class="card-title">2.000 trứng <span class="badge-hot" style="background: #059669;">GIÁ SỈ</span> <span class="badge-gift">🎁 Tặng +200 trứng (10%)</span></span>
-                                <div class="card-prices">
-                                    <span class="card-price">3.500.000₫</span>
-                                    <del class="card-old-price">4.0Tr</del>
-                                </div>
-                                <div class="check-icon">✔️</div>
-                            </div>
-                        </label>
-                        <label class="product-card" id="customCardLabel">
-                            <input type="radio" name="product_radio" value="Tùy chọn số lượng" data-price="custom">
-                            <div class="card-content" style="flex-direction: column; align-items: stretch;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                                    <span class="card-title">Tự chọn số lượng lớn <span class="badge-hot" style="background: #2563eb;">GIÁ SỈ TỐT NHẤT</span> <span class="badge-gift">🎁 Tặng +10% trứng</span></span>
+                <!-- BƯỚC 1: CHỌN SẢN PHẨM & SỐ LƯỢNG -->
+                <div class="order-step" id="step1Product">
+                    <div class="step-guide-text">
+                        🎁 Mọi đơn hàng đều được <strong>tặng thêm 10% trứng</strong> và hỗ trợ <strong>Freeship toàn quốc</strong>!
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lựa chọn gói trứng cào cào <span class="required">*</span></label>
+                        <div class="product-cards">
+                            <label class="product-card">
+                                <input type="radio" name="product_radio" value="Trứng Cào Cào (50 trứng)" data-price="149000" data-bonus="+5 trứng" checked>
+                                <div class="card-content">
+                                    <span class="card-title">50 trứng <span class="badge-gift">🎁 Tặng +5 trứng (10%)</span></span>
                                     <div class="card-prices">
-                                        <span class="card-price" id="customPricePreview">4.000.000₫</span>
-                                        <del class="card-old-price">5.0Tr</del>
+                                        <span class="card-price">149.000₫</span>
+                                        <del class="card-old-price">190K</del>
                                     </div>
                                     <div class="check-icon">✔️</div>
                                 </div>
-                                <div id="customQtyContainer" style="display: none; margin-top: 12px; padding-top: 10px; border-top: 1px dashed #cbd5e1;">
-                                    <div style="font-size: 13px; color: #475569; font-weight: 600; margin-bottom: 6px;">
-                                        Số lượng trứng muốn mua (Tối thiểu 2.500 trứng):
+                            </label>
+                            <label class="product-card">
+                                <input type="radio" name="product_radio" value="Trứng Cào Cào (100 trứng)" data-price="270000" data-bonus="+10 trứng">
+                                <div class="card-content">
+                                    <span class="card-title">100 trứng <span class="badge-gift">🎁 Tặng +10 trứng (10%)</span></span>
+                                    <div class="card-prices">
+                                        <span class="card-price">270.000₫</span>
+                                        <del class="card-old-price">320K</del>
                                     </div>
-                                    <div style="display: flex; align-items: center; gap: 8px;">
-                                        <button type="button" class="btn-qty" id="btnEggMinus" style="border-radius: 8px; width: 42px; height: 42px; flex-shrink: 0;">-</button>
-                                        <input type="number" id="customEggQuantity" value="2500" min="2500" step="100" style="text-align: center; font-weight: 700; font-size: 16px; height: 42px; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; flex: 1;">
-                                        <button type="button" class="btn-qty" id="btnEggPlus" style="border-radius: 8px; width: 42px; height: 42px; flex-shrink: 0;">+</button>
-                                        <span style="font-weight: 600; font-size: 14px; color: #64748b;">trứng</span>
+                                    <div class="check-icon">✔️</div>
+                                </div>
+                            </label>
+                            <label class="product-card">
+                                <input type="radio" name="product_radio" value="Trứng Cào Cào (200 trứng)" data-price="500000" data-bonus="+20 trứng">
+                                <div class="card-content">
+                                    <span class="card-title">200 trứng <span class="badge-gift">🎁 Tặng +20 trứng (10%)</span></span>
+                                    <div class="card-prices">
+                                        <span class="card-price">500.000₫</span>
+                                        <del class="card-old-price">600K</del>
                                     </div>
-                                    <div style="font-size: 12px; color: #059669; font-weight: 600; margin-top: 6px;">
-                                        ⚡ Tối thiểu từ 2.500 trứng trở lên
+                                    <div class="check-icon">✔️</div>
+                                </div>
+                            </label>
+                            <label class="product-card">
+                                <input type="radio" name="product_radio" value="Trứng Cào Cào (500 trứng)" data-price="1000000" data-bonus="+50 trứng">
+                                <div class="card-content">
+                                    <span class="card-title">500 trứng <span class="badge-hot">BÁN CHẠY</span> <span class="badge-gift">🎁 Tặng +50 trứng (10%)</span></span>
+                                    <div class="card-prices">
+                                        <span class="card-price">1.000.000₫</span>
+                                        <del class="card-old-price">1.2Tr</del>
+                                    </div>
+                                    <div class="check-icon">✔️</div>
+                                </div>
+                            </label>
+                            <label class="product-card">
+                                <input type="radio" name="product_radio" value="Trứng Cào Cào (1000 trứng)" data-price="1800000" data-bonus="+100 trứng">
+                                <div class="card-content">
+                                    <span class="card-title">1.000 trứng <span class="badge-gift">🎁 Tặng +100 trứng (10%)</span></span>
+                                    <div class="card-prices">
+                                        <span class="card-price">1.800.000₫</span>
+                                        <del class="card-old-price">2.1Tr</del>
+                                    </div>
+                                    <div class="check-icon">✔️</div>
+                                </div>
+                            </label>
+                            <label class="product-card">
+                                <input type="radio" name="product_radio" value="Trứng Cào Cào (2000 trứng)" data-price="3500000" data-bonus="+200 trứng">
+                                <div class="card-content">
+                                    <span class="card-title">2.000 trứng <span class="badge-hot" style="background: #059669;">GIÁ SỈ</span> <span class="badge-gift">🎁 Tặng +200 trứng (10%)</span></span>
+                                    <div class="card-prices">
+                                        <span class="card-price">3.500.000₫</span>
+                                        <del class="card-old-price">4.0Tr</del>
+                                    </div>
+                                    <div class="check-icon">✔️</div>
+                                </div>
+                            </label>
+                            <label class="product-card" id="customCardLabel">
+                                <input type="radio" name="product_radio" value="Tùy chọn số lượng" data-price="custom" data-bonus="+10% trứng">
+                                <div class="card-content" style="flex-direction: column; align-items: stretch;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                        <span class="card-title">Tự chọn số lượng lớn <span class="badge-hot" style="background: #2563eb;">GIÁ SỈ TỐT NHẤT</span> <span class="badge-gift">🎁 Tặng +10% trứng</span></span>
+                                        <div class="card-prices">
+                                            <span class="card-price" id="customPricePreview">4.000.000₫</span>
+                                            <del class="card-old-price">5.0Tr</del>
+                                        </div>
+                                        <div class="check-icon">✔️</div>
+                                    </div>
+                                    <div id="customQtyContainer" style="display: none; margin-top: 12px; padding-top: 10px; border-top: 1px dashed #cbd5e1;">
+                                        <div style="font-size: 13px; color: #475569; font-weight: 600; margin-bottom: 6px;">
+                                            Số lượng trứng muốn mua (Tối thiểu 2.500 trứng):
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <button type="button" class="btn-qty" id="btnEggMinus" style="border-radius: 8px; width: 42px; height: 42px; flex-shrink: 0;">-</button>
+                                            <input type="number" id="customEggQuantity" value="2500" min="2500" step="100" style="text-align: center; font-weight: 700; font-size: 16px; height: 42px; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; flex: 1;">
+                                            <button type="button" class="btn-qty" id="btnEggPlus" style="border-radius: 8px; width: 42px; height: 42px; flex-shrink: 0;">+</button>
+                                            <span style="font-weight: 600; font-size: 14px; color: #64748b;">trứng</span>
+                                        </div>
+                                        <div style="font-size: 12px; color: #059669; font-weight: 600; margin-top: 6px;">
+                                            ⚡ Tối thiểu từ 2.500 trứng trở lên
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group" id="comboQtyGroup">
-                    <label>Số lượng gói/combo <span class="required">*</span></label>
-                    <div class="qty-control">
-                        <button type="button" class="btn-qty" id="btn-minus">-</button>
-                        <input type="number" id="quantity" name="quantity" value="1" min="1" required readonly>
-                        <button type="button" class="btn-qty" id="btn-plus">+</button>
+                    <div class="form-group" id="comboQtyGroup">
+                        <label>Số lượng gói/combo <span class="required">*</span></label>
+                        <div class="qty-control">
+                            <button type="button" class="btn-qty" id="btn-minus">-</button>
+                            <input type="number" id="quantity" name="quantity" value="1" min="1" required readonly>
+                            <button type="button" class="btn-qty" id="btn-plus">+</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label>Họ và Tên <span class="required">*</span></label>
-                    <input type="text" id="fullname" name="fullname" placeholder="Nhập tên người nhận hàng" required>
-                </div>
+                    <div class="step1-subtotal-box">
+                        <div class="step1-subtotal-row">
+                            <span>Tạm tính tiền hàng:</span>
+                            <span class="step1-subtotal-price" id="step1Subtotal">149.000₫</span>
+                        </div>
+                        <div class="step1-gift-notice" id="step1GiftNotice">
+                            🎁 Đã gồm: Tặng thêm +5 trứng (10%)
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label>Số điện thoại <span class="required">*</span></label>
-                    <input type="tel" id="phone" name="phone" placeholder="VD: 0935127132" required>
-                    <span class="error-message" id="phoneError">Số điện thoại không hợp lệ</span>
-                </div>
-
-                <div class="form-group address-group">
-                    <label>Địa chỉ giao hàng <span class="required">*</span></label>
-                    <select id="province" required><option value="" disabled selected>Chọn Tỉnh/Thành phố</option></select>
-                    <select id="district" required disabled><option value="" disabled selected>Chọn Quận/Huyện</option></select>
-                    <select id="ward" required disabled><option value="" disabled selected>Chọn Phường/Xã</option></select>
-                    <input type="text" id="street" placeholder="Nhập số nhà, tên đường, thôn/xóm..." required>
-                </div>
-
-                <div class="form-group">
-                    <label>Ghi chú (Tùy chọn)</label>
-                    <input type="text" id="notes" name="notes" placeholder="VD: Giao giờ hành chính, gọi trước khi giao...">
-                </div>
-
-                <div class="form-group freeship-offer">
-                    <button type="button" id="formBtnFreeship" class="btn-freeship">
-                        <span class="fs-icon">🎁</span> BẤM LẤY MÃ FREESHIP <span class="fs-limit">(Còn 12 lượt)</span>
+                    <button type="button" class="btn-submit btn-next-step" id="btnNextToStep2">
+                        TIẾP TỤC (ĐIỀN ĐỊA CHỈ) ➔
                     </button>
                 </div>
 
-                <!-- Tổng kết -->
-                <div class="summary-box">
-                    <div class="summary-row" id="freeshipRow">
-                        <span>Phí giao hàng:</span>
-                        <span class="ship-fee" id="shipFeeText">30.000₫</span>
+                <!-- BƯỚC 2: THÔNG TIN GIAO HÀNG & THANH TOÁN -->
+                <div class="order-step" id="step2Shipping" style="display: none;">
+                    
+                    <!-- Hộp tóm tắt gói đã chọn ở bước 1 -->
+                    <div class="selected-product-card">
+                        <div class="sp-icon">📦</div>
+                        <div class="sp-info">
+                            <div class="sp-name" id="step2SelectedName">Trứng Cào Cào (50 trứng)</div>
+                            <div class="sp-detail" id="step2SelectedDetail">Số lượng: 1 gói • 🎁 Tặng thêm 5 trứng</div>
+                            <div class="sp-price" id="step2SelectedPrice">149.000₫</div>
+                        </div>
+                        <button type="button" class="btn-edit-pack" id="btnChangeVariant">Đổi gói</button>
                     </div>
-                    <div class="summary-row total-row">
-                        <span>Tổng thanh toán:</span>
-                        <span id="totalPriceDisplay">179.000₫</span>
-                        <input type="hidden" name="total" id="totalInput" value="179000">
+
+                    <div class="form-group">
+                        <label>Họ và Tên <span class="required">*</span></label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Nhập tên người nhận hàng" required>
                     </div>
+
+                    <div class="form-group">
+                        <label>Số điện thoại <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="VD: 0935127132" required>
+                        <span class="error-message" id="phoneError">Số điện thoại không hợp lệ</span>
+                    </div>
+
+                    <div class="form-group address-group">
+                        <label>Địa chỉ giao hàng <span class="required">*</span></label>
+                        <select id="province" required><option value="" disabled selected>Chọn Tỉnh/Thành phố</option></select>
+                        <select id="district" required disabled><option value="" disabled selected>Chọn Quận/Huyện</option></select>
+                        <select id="ward" required disabled><option value="" disabled selected>Chọn Phường/Xã</option></select>
+                        <input type="text" id="street" placeholder="Nhập số nhà, tên đường, thôn/xóm..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ghi chú (Tùy chọn)</label>
+                        <input type="text" id="notes" name="notes" placeholder="VD: Giao giờ hành chính, gọi trước khi giao...">
+                    </div>
+
+                    <div class="form-group freeship-offer">
+                        <button type="button" id="formBtnFreeship" class="btn-freeship">
+                            <span class="fs-icon">🎁</span> BẤM LẤY MÃ FREESHIP <span class="fs-limit">(Còn 12 lượt)</span>
+                        </button>
+                    </div>
+
+                    <!-- Tổng kết -->
+                    <div class="summary-box">
+                        <div class="summary-row">
+                            <span>Tiền hàng:</span>
+                            <span id="goodsPriceText">149.000₫</span>
+                        </div>
+                        <div class="summary-row" id="freeshipRow">
+                            <span>Phí giao hàng:</span>
+                            <span class="ship-fee" id="shipFeeText">30.000₫</span>
+                        </div>
+                        <div class="summary-row total-row">
+                            <span>Tổng thanh toán:</span>
+                            <span id="totalPriceDisplay">179.000₫</span>
+                            <input type="hidden" name="total" id="totalInput" value="179000">
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-submit" id="previewBtn">
+                        TIẾN HÀNH ĐẶT HÀNG
+                    </button>
                 </div>
 
-                <button type="button" class="btn-submit" id="previewBtn">
-                    TIẾN HÀNH ĐẶT HÀNG
-                </button>
             </form>
         </div>
     </div>

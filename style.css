@@ -173,3 +173,32 @@ input.is-invalid + .error-message { display: block; }
 .modal-actions button { flex: 1; padding: 12px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
 .btn-cancel { background: #f3f4f6; color: var(--text-muted); }
 .btn-confirm { background: var(--primary); color: #fff; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3); }
+
+/* Multi-step Bottom Sheet */
+.sheet-header-left { display: flex; align-items: center; gap: 8px; }
+.sheet-title-box { display: flex; flex-direction: column; }
+.sheet-step-badge { font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; }
+.btn-back-sheet { background: #f3f4f6; border: 1px solid #e5e7eb; padding: 6px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; color: #4b5563; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s; }
+.btn-back-sheet:hover { background: #e5e7eb; color: #111827; }
+
+.order-step { animation: fadeIn 0.25s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.step-guide-text { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; font-size: 13px; padding: 10px 12px; border-radius: 10px; margin-bottom: 16px; line-height: 1.4; }
+.step1-subtotal-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 15px; margin-top: 15px; margin-bottom: 16px; }
+.step1-subtotal-row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; color: #334155; }
+.step1-subtotal-price { color: var(--danger); font-size: 18px; font-weight: 700; }
+.step1-gift-notice { margin-top: 5px; font-size: 12px; color: #059669; font-weight: 600; }
+
+.btn-next-step { width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+/* Selected Product Summary Card in Step 2 */
+.selected-product-card { display: flex; align-items: center; gap: 12px; background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 12px; padding: 12px 14px; margin-bottom: 18px; }
+.sp-icon { font-size: 24px; flex-shrink: 0; }
+.sp-info { flex: 1; min-width: 0; }
+.sp-name { font-weight: 700; font-size: 14px; color: #1e293b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sp-detail { font-size: 12px; color: #059669; font-weight: 600; margin-top: 2px; }
+.sp-price { font-size: 14px; font-weight: 700; color: var(--danger); margin-top: 2px; }
+.btn-edit-pack { background: #fff; border: 1px solid #cbd5e1; color: var(--primary-dark); font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 6px; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+.btn-edit-pack:hover { background: #f8fafc; border-color: var(--primary); }
+
