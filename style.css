@@ -102,8 +102,9 @@ body { background-color: #e5e7eb; color: var(--text-main); line-height: 1.5; dis
 .product-card { position: relative; cursor: pointer; display: block; }
 .product-card input[type="radio"] { position: absolute; opacity: 0; }
 .card-content { border: 2px solid var(--border); border-radius: 12px; padding: 15px; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; background: #fff; }
-.card-title { font-weight: 600; color: var(--text-main); font-size: 15px; display: flex; align-items: center; gap: 5px; }
+.card-title { font-weight: 600; color: var(--text-main); font-size: 14px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
 .badge-hot { background: var(--danger); color: #fff; font-size: 10px; padding: 2px 5px; border-radius: 4px; }
+.badge-gift { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-size: 10px; font-weight: 700; padding: 2px 5px; border-radius: 4px; display: inline-flex; align-items: center; gap: 2px; }
 .card-prices { text-align: right; }
 .card-price { display: block; font-weight: 700; color: var(--danger); font-size: 15px; }
 .card-old-price { font-size: 12px; color: var(--text-muted); }
