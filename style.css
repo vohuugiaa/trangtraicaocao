@@ -40,6 +40,17 @@ body { background-color: #e5e7eb; color: var(--text-main); line-height: 1.5; dis
 .progress-bar { width: 100%; height: 100%; border-radius: 8px; overflow: hidden; position: relative; }
 .progress-fill { background: linear-gradient(90deg, #f87171, #ef4444); height: 100%; border-radius: 8px; }
 
+/* Density Section */
+.density-section { padding: 22px 20px; background: #fff; margin-top: 10px; border-bottom: 1px solid var(--border); }
+.density-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; }
+.density-stat { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(90deg, #fef3c7, #fde68a); padding: 10px 14px; border-radius: 8px; margin-bottom: 12px; border: 1px solid #fcd34d; }
+.stat-badge { font-size: 13px; font-weight: 700; color: #92400e; }
+.stat-value { font-size: 16px; font-weight: 800; color: #b45309; }
+.density-info p { font-size: 14px; color: var(--text-main); line-height: 1.5; margin-bottom: 8px; }
+.density-info p:last-child { margin-bottom: 0; }
+.example-box { background: #fff; border-left: 3px solid var(--primary); padding: 8px 12px; margin: 10px 0; font-size: 13px; color: #374151; border-radius: 0 6px 6px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.highlight-tip { color: var(--success) !important; font-weight: 600; }
+
 /* Instructions */
 .instructions-section { padding: 25px 20px; background: #fff; margin-top: 10px; border-bottom: 1px solid var(--border); }
 .section-title { font-size: 16px; color: var(--secondary); text-align: center; font-weight: 700; margin-bottom: 20px; }
