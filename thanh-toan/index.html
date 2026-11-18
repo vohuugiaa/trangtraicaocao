@@ -29,8 +29,601 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="../style.css">
+  <!-- Custom Stylesheet with cache bust -->
+  <link rel="stylesheet" href="../style.css?v=20261118">
+
+  <!-- INLINE CRITICAL CHECKOUT STYLES (Self-contained, immune to cache issues) -->
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page-container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #ffffff;
+      min-height: 100vh;
+      box-shadow: 0 0 25px rgba(0,0,0,0.06);
+      position: relative;
+    }
+
+    /* Top Notice Bar */
+    .top-notice-bar {
+      background: linear-gradient(90deg, #15803d, #16a34a);
+      color: #ffffff;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 6px 10px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+    .top-notice-bar .badge {
+      background: #facc15;
+      color: #713f12;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* Site Header */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .header-brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .brand-name {
+      font-size: 14.5px;
+      font-weight: 900;
+      color: #15803d;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      line-height: 1.2;
+    }
+    .brand-slogan {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .header-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .header-cart-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #fef3c7;
+      color: #b45309;
+      border: 1.5px solid #fde68a;
+      padding: 5px 10px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .header-hotline-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f0fdf4;
+      color: #166534;
+      border: 1.5px solid #86efac;
+      padding: 5px 9px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    /* Navigation Tabs */
+    .site-nav-tabs {
+      display: flex;
+      background: #ffffff;
+      border-bottom: 2px solid #e2e8f0;
+      position: sticky;
+      top: 58px;
+      z-index: 89;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .site-nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+    .nav-tab-item {
+      flex: 1;
+      min-width: 60px;
+      text-align: center;
+      padding: 8px 2px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      text-decoration: none;
+      border-bottom: 3px solid transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .nav-tab-item .tab-icon {
+      font-size: 16px;
+      line-height: 1;
+    }
+    .nav-tab-item.active {
+      color: #15803d;
+      border-bottom-color: #16a34a;
+      background: #f0fdf4;
+      font-weight: 800;
+    }
+    .nav-tab-item.nav-tab-cart {
+      color: #d97706;
+    }
+    .nav-tab-item.nav-tab-cart.active {
+      color: #b45309;
+      border-bottom-color: #f59e0b;
+      background: #fef3c7;
+    }
+
+    /* Checkout Page Styles */
+    .checkout-wrapper {
+      padding: 12px 14px 40px;
+    }
+    .checkout-trust-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .trust-item-pill {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 7px 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .checkout-card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px 14px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    .checkout-card-header {
+      font-size: 14px;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 1.5px solid #f1f5f9;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    /* Cart Item Card */
+    .checkout-cart-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed #e2e8f0;
+      margin-bottom: 12px;
+    }
+    .cart-item-thumb, #cartItemImg {
+      width: 76px !important;
+      height: 76px !important;
+      min-width: 76px !important;
+      max-width: 76px !important;
+      object-fit: cover !important;
+      border-radius: 8px !important;
+      display: block !important;
+      flex-shrink: 0 !important;
+      border: 1px solid #e2e8f0;
+    }
+    .cart-item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cart-item-name {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.25;
+    }
+    .cart-item-gift {
+      font-size: 12px;
+      font-weight: 700;
+      color: #15803d;
+      background: #f0fdf4;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      width: fit-content;
+    }
+    .cart-item-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .cart-current-price {
+      font-size: 17px;
+      font-weight: 900;
+      color: #dc2626;
+    }
+    .cart-old-price {
+      font-size: 12.5px;
+      color: #94a3b8;
+      text-decoration: line-through;
+      margin-left: 6px;
+    }
+
+    /* Stepper */
+    .qty-stepper-wrap {
+      display: inline-flex;
+      align-items: center;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+    .btn-qty-step {
+      width: 36px;
+      height: 36px;
+      background: #f8fafc;
+      border: none;
+      font-size: 18px;
+      font-weight: 800;
+      color: #334155;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .btn-qty-step:active {
+      background: #e2e8f0;
+    }
+    .qty-input-field {
+      width: 44px;
+      height: 36px;
+      border: none;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      outline: none;
+      background: transparent;
+    }
+
+    /* Pack Switcher */
+    .pack-switcher-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+    .pack-switcher-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .pack-pill-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 2px;
+      padding: 9px 10px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+      user-select: none;
+    }
+    .pack-pill-btn:hover {
+      border-color: #86efac;
+      background: #f8fafc;
+    }
+    .pack-pill-btn.active {
+      border: 2px solid #16a34a !important;
+      background: #f0fdf4 !important;
+      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.18);
+    }
+    .pack-pill-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .pack-pill-btn.active .pack-pill-title {
+      color: #166534;
+      font-weight: 800;
+    }
+    .pack-pill-price {
+      font-size: 14px;
+      font-weight: 800;
+      color: #dc2626;
+    }
+
+    /* Form Fields */
+    .form-group-item {
+      margin-bottom: 15px;
+    }
+    .form-group-item label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 13.5px;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .form-group-item label .label-icon {
+      font-size: 15px;
+    }
+    .form-group-item label .req {
+      color: #dc2626;
+      font-weight: 800;
+    }
+    .form-control-input,
+    .form-control-select {
+      width: 100%;
+      height: 48px;
+      padding: 0 14px;
+      font-size: 16px; /* iOS zoom prevention */
+      font-family: inherit;
+      color: #0f172a;
+      background-color: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      outline: none;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+    .form-control-input::placeholder {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+    .form-control-input:focus,
+    .form-control-select:focus {
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3.5px rgba(22, 163, 74, 0.16);
+      background-color: #ffffff;
+    }
+    .address-cascader {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .form-control-select {
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 15px;
+      padding-right: 36px;
+    }
+    .form-control-select:disabled {
+      background-color: #f8fafc;
+      color: #94a3b8;
+      cursor: not-allowed;
+      border-color: #e2e8f0;
+    }
+    .field-error-msg {
+      display: none;
+      color: #dc2626;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 5px;
+    }
+
+    /* Invoice Summary */
+    .checkout-invoice-table {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+    }
+    .checkout-invoice-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 13px;
+      color: #475569;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+    .checkout-invoice-row:last-child {
+      border-bottom: none;
+    }
+    .checkout-invoice-row.total-row {
+      padding-top: 10px;
+      margin-top: 6px;
+      border-top: 1.5px solid #cbd5e1;
+      border-bottom: none;
+    }
+    .checkout-total-val {
+      font-size: 22px;
+      font-weight: 900;
+      color: #dc2626;
+    }
+
+    /* Submit Button */
+    .btn-checkout-confirm {
+      width: 100%;
+      height: 52px;
+      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 900;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
+      transition: all 0.2s ease;
+      letter-spacing: 0.2px;
+      user-select: none;
+    }
+    .btn-checkout-confirm:hover,
+    .btn-checkout-confirm:active {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(22, 163, 74, 0.55);
+      background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+    }
+
+    /* Success View */
+    .checkout-success-box {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px 18px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      border: 1.5px solid #bbf7d0;
+    }
+    .success-check-icon {
+      width: 64px;
+      height: 64px;
+      background: #dcfce7;
+      color: #16a34a;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      border: 2px solid #86efac;
+    }
+
+    /* Floating Actions */
+    .floating-actions {
+      position: fixed;
+      right: 16px;
+      bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 99;
+    }
+    .floating-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .floating-btn:hover {
+      transform: scale(1.1);
+    }
+    .floating-btn-zalo {
+      background: #0068ff;
+      color: #fff;
+    }
+    .floating-btn-zalo svg {
+      width: 26px;
+      height: 26px;
+      fill: #ffffff;
+    }
+    .floating-btn-phone {
+      background: #16a34a;
+      color: #fff;
+    }
+    .floating-btn-phone svg {
+      width: 22px;
+      height: 22px;
+      fill: #ffffff;
+    }
+
+    /* Loading Overlay */
+    .loading-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      gap: 12px;
+    }
+    .loading-spinner {
+      width: 44px;
+      height: 44px;
+      border: 4px solid rgba(255,255,255,0.3);
+      border-top-color: #22c55e;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
 
@@ -38,14 +631,7 @@
 
   <!-- Top Announcement Bar -->
   <div class="top-notice-bar">
-    <div class="notice-slider">
-      <div class="notice-item">
-        <span class="badge">FREESHIP</span> 🚚 MIỄN PHÍ GIAO HÀNG TOÀN QUỐC HÔM NAY
-      </div>
-      <div class="notice-item">
-        <span class="badge">QUÀ TẶNG</span> 🎁 TẶNG THÊM +10% SỐ LƯỢNG TRỨNG CHO MỌI ĐƠN
-      </div>
-    </div>
+    <span class="badge">FREESHIP</span> 🚚 MIỄN PHÍ VẬN CHUYỂN HỎA TỐC TOÀN QUỐC HÔM NAY
   </div>
 
   <!-- Site Header / Brand Navigation -->
@@ -62,10 +648,12 @@
         <span class="brand-slogan">Trại Giống Cốm Chuẩn • Tỉ Lệ Nở Cao</span>
       </div>
     </a>
-    <a href="tel:0935127132" class="header-hotline-btn">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-      0935.127.132
-    </a>
+    <div class="header-right-actions">
+      <a href="tel:0935127132" class="header-hotline-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        0935.127.132
+      </a>
+    </div>
   </header>
 
   <!-- Multi-Page Navigation Bar -->
@@ -78,6 +666,10 @@
       <span class="tab-icon">📦</span>
       <span class="tab-title">Sản Phẩm</span>
     </a>
+    <a href="/thanh-toan" class="nav-tab-item nav-tab-cart active">
+      <span class="tab-icon">🛒</span>
+      <span class="tab-title">Giỏ Hàng</span>
+    </a>
     <a href="/ky-thuat" class="nav-tab-item">
       <span class="tab-icon">📖</span>
       <span class="tab-title">Kỹ Thuật</span>
@@ -89,16 +681,16 @@
   </nav>
 
   <!-- Breadcrumb Bar -->
-  <div style="padding: 10px 16px; font-size: 12px; color: #64748b; display: flex; align-items: center; gap: 6px; background: #f8fafc; border-bottom: 1px solid #f1f5f9;">
-    <a href="/" style="color: var(--primary-dark); text-decoration: none; font-weight: 600;">Trang Chủ</a>
+  <div style="padding: 10px 14px; font-size: 12px; color: #64748b; display: flex; align-items: center; gap: 6px; background: #f8fafc; border-bottom: 1px solid #f1f5f9;">
+    <a href="/" style="color: #16a34a; text-decoration: none; font-weight: 600;">Trang Chủ</a>
     <span>›</span>
-    <a href="/trung-cao-cao" style="color: var(--primary-dark); text-decoration: none; font-weight: 600;">Bảng Giá</a>
+    <a href="/trung-cao-cao" style="color: #16a34a; text-decoration: none; font-weight: 600;">Sản Phẩm</a>
     <span>›</span>
-    <span style="color: var(--text-main); font-weight: 700;">Giỏ Hàng &amp; Thanh Toán</span>
+    <span style="color: #0f172a; font-weight: 700;">Giỏ Hàng &amp; Thanh Toán</span>
   </div>
 
   <!-- Page Title Banner -->
-  <div style="padding: 16px 16px 8px; text-align: center;">
+  <div style="padding: 16px 14px 10px; text-align: center;">
     <span style="display: inline-block; background: #ecfdf5; color: #047857; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 9999px; margin-bottom: 6px; border: 1px solid #a7f3d0;">
       ⚡ ĐẶT HÀNG TRỰC TIẾP TỪ TRẠI
     </span>
@@ -139,9 +731,9 @@
             <span>📦</span> 1. SẢN PHẨM ĐÃ CHỌN
           </div>
 
-          <!-- Cart Item Display -->
+          <!-- Cart Item Display with Strict Inline Dimensions -->
           <div class="checkout-cart-item">
-            <img src="../assets/22.jpg" alt="Trứng cào cào cốm giống" class="cart-item-thumb" id="cartItemImg">
+            <img src="../assets/22.jpg" alt="Trứng cào cào cốm giống" class="cart-item-thumb" id="cartItemImg" style="width: 76px !important; height: 76px !important; min-width: 76px !important; max-width: 76px !important; object-fit: cover !important; border-radius: 8px !important; display: block !important; flex-shrink: 0 !important;">
             <div class="cart-item-info">
               <div>
                 <div class="cart-item-name" id="cartItemName">500 Trứng Cào Cào Cốm Giống</div>
@@ -152,7 +744,7 @@
                   <span class="cart-current-price" id="cartCurrentPrice">1.000.000₫</span>
                   <span class="cart-old-price" id="cartOldPrice">1.200.000₫</span>
                 </div>
-                <div style="font-size: 12px; font-weight: 700; color: #047857; background: #dcfce7; padding: 2px 8px; border-radius: 4px;">
+                <div id="cartSaveBadge" style="font-size: 11px; font-weight: 800; color: #047857; background: #dcfce7; padding: 2px 7px; border-radius: 4px;">
                   Tiết kiệm 200K
                 </div>
               </div>
@@ -160,8 +752,8 @@
           </div>
 
           <!-- Quantity Stepper -->
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 4px 14px; border-bottom: 1px dashed #e2e8f0; margin-bottom: 12px;" id="comboQtyRow">
-            <div style="font-size: 13px; font-weight: 700; color: #334155;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0 14px; border-bottom: 1px dashed #e2e8f0; margin-bottom: 12px;" id="comboQtyRow">
+            <div style="font-size: 13.5px; font-weight: 700; color: #334155;">
               Số lượng combo:
             </div>
             <div class="qty-stepper-wrap" style="margin: 0;">
@@ -172,18 +764,18 @@
           </div>
 
           <!-- Custom Quantity Input (if sỉ) -->
-          <div id="customQtyBox" style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px; margin-bottom: 14px;">
-            <div style="font-size: 13px; font-weight: 800; color: #166534; margin-bottom: 6px;">
+          <div id="customQtyBox" style="display: none; background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 10px; padding: 12px; margin-bottom: 14px;">
+            <div style="font-size: 13px; font-weight: 800; color: #166534; margin-bottom: 8px;">
               Nhập số lượng trứng sỉ cần mua:
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
               <button type="button" class="btn-qty-step" id="btnCustomMinus" style="border-radius: 6px;">-</button>
-              <input type="number" id="customEggInput" value="2500" min="2500" step="100" style="width: 120px; height: 38px; text-align: center; font-size: 16px; font-weight: 800; border: 1.5px solid #16a34a; border-radius: 8px;">
+              <input type="number" id="customEggInput" value="2500" min="2500" step="100" style="width: 120px; height: 40px; text-align: center; font-size: 16px; font-weight: 800; border: 1.5px solid #16a34a; border-radius: 8px; outline: none;">
               <button type="button" class="btn-qty-step" id="btnCustomPlus" style="border-radius: 6px;">+</button>
-              <span style="font-weight: 700; color: #475569;">quả trứng</span>
+              <span style="font-weight: 700; color: #475569; font-size: 14px;">trứng</span>
             </div>
-            <div style="font-size: 11.5px; color: #047857; margin-top: 6px; font-weight: 600;">
-              ⚡ Tối thiểu 2.500 trứng trở lên • Đơn giá sỉ 1.600₫/trứng • Tặng thêm +10% trứng
+            <div style="font-size: 11.5px; color: #047857; margin-top: 8px; font-weight: 600;">
+              ⚡ Tối thiểu 2.500 trứng trở lên • Đóng thùng xốp bảo ôn • Tặng thêm +10% trứng & Freeship
             </div>
           </div>
 
@@ -193,15 +785,15 @@
           </div>
           <div class="pack-switcher-grid">
             <button type="button" class="pack-pill-btn" data-key="50">
-              <span class="pack-pill-title">50 Trứng <span>🎁 +5</span></span>
+              <span class="pack-pill-title">50 Trứng <span style="font-size: 10px; color: #16a34a;">🎁 +5</span></span>
               <span class="pack-pill-price">149.000₫</span>
             </button>
             <button type="button" class="pack-pill-btn" data-key="100">
-              <span class="pack-pill-title">100 Trứng <span>🎁 +10</span></span>
+              <span class="pack-pill-title">100 Trứng <span style="font-size: 10px; color: #16a34a;">🎁 +10</span></span>
               <span class="pack-pill-price">270.000₫</span>
             </button>
             <button type="button" class="pack-pill-btn" data-key="200">
-              <span class="pack-pill-title">200 Trứng <span>🎁 +20</span></span>
+              <span class="pack-pill-title">200 Trứng <span style="font-size: 10px; color: #16a34a;">🎁 +20</span></span>
               <span class="pack-pill-price">500.000₫</span>
             </button>
             <button type="button" class="pack-pill-btn active" data-key="500">
@@ -209,21 +801,21 @@
               <span class="pack-pill-price">1.000.000₫</span>
             </button>
             <button type="button" class="pack-pill-btn" data-key="1000">
-              <span class="pack-pill-title">1.000 Trứng <span>🎁 +100</span></span>
+              <span class="pack-pill-title">1.000 Trứng <span style="font-size: 10px; color: #16a34a;">🎁 +100</span></span>
               <span class="pack-pill-price">1.800.000₫</span>
             </button>
             <button type="button" class="pack-pill-btn" data-key="2000">
-              <span class="pack-pill-title">2.000 Trứng <span>🎁 +200</span></span>
+              <span class="pack-pill-title">2.000 Trứng <span style="background: #059669; color: #fff; font-size: 9px; padding: 1px 4px; border-radius: 3px;">GIÁ SỈ</span></span>
               <span class="pack-pill-price">3.500.000₫</span>
             </button>
           </div>
           <button type="button" class="pack-pill-btn" data-key="si" style="width: 100%;">
-            <span class="pack-pill-title">Tự chọn số lượng sỉ lớn (&ge; 2.500 trứng) <span style="background: #2563eb; color: #fff; font-size: 9px; padding: 1px 4px; border-radius: 3px;">GIÁ SỈ TỐT</span></span>
-            <span class="pack-pill-price">Từ 4.000.000₫ • Đơn giá 1.600₫/trứng</span>
+            <span class="pack-pill-title">Tự chọn số lượng sỉ lớn (&ge; 2.500 trứng) <span style="background: #2563eb; color: #fff; font-size: 9px; padding: 1px 4px; border-radius: 3px;">SỈ TẬN GỐC</span></span>
+            <span class="pack-pill-price">Từ 4.000.000₫ • Ưu đãi giá sỉ tốt nhất</span>
           </button>
         </div>
 
-        <!-- CARD 2: THÔNG TIN GIAO HÀNG (MOBILE FRIENDLY) -->
+        <!-- CARD 2: THÔNG TIN GIAO HÀNG (MOBILE FRIENDLY & HIGH CONTRAST) -->
         <div class="checkout-card">
           <div class="checkout-card-header">
             <span>📍</span> 2. THÔNG TIN NGƯỜI NHẬN HÀNG
@@ -231,38 +823,46 @@
 
           <!-- Họ tên -->
           <div class="form-group-item">
-            <label for="fullname" style="font-weight: 700; font-size: 13px; color: #334155;">Họ và tên người nhận <span class="req">*</span></label>
-            <input type="text" class="form-control-input" id="fullname" name="fullname" placeholder="VD: Nguyễn Văn An" style="font-size: 15px; height: 44px;" required>
-            <span class="field-error-msg" id="nameError" style="display: none; color: #dc2626; font-size: 11.5px; font-weight: 600; margin-top: 4px;">⚠️ Vui lòng nhập họ tên người nhận</span>
+            <label for="fullname">
+              <span class="label-icon">👤</span> Họ và tên người nhận <span class="req">*</span>
+            </label>
+            <input type="text" class="form-control-input" id="fullname" name="fullname" placeholder="VD: Nguyễn Văn An" autocomplete="name" required>
+            <span class="field-error-msg" id="nameError">⚠️ Vui lòng nhập họ tên người nhận</span>
           </div>
 
           <!-- Số điện thoại -->
           <div class="form-group-item">
-            <label for="phone" style="font-weight: 700; font-size: 13px; color: #334155;">Số điện thoại liên hệ <span class="req">*</span></label>
-            <input type="tel" class="form-control-input" id="phone" name="phone" placeholder="VD: 0935127132" style="font-size: 15px; height: 44px;" required>
-            <span class="field-error-msg" id="phoneError" style="display: none; color: #dc2626; font-size: 11.5px; font-weight: 600; margin-top: 4px;">⚠️ Vui lòng nhập số điện thoại hợp lệ (10 số, đầu 03, 05, 07, 08, 09)</span>
+            <label for="phone">
+              <span class="label-icon">📞</span> Số điện thoại nhận hàng (gọi xác nhận) <span class="req">*</span>
+            </label>
+            <input type="tel" class="form-control-input" id="phone" name="phone" placeholder="VD: 0935127132 (10 số)" autocomplete="tel" required>
+            <span class="field-error-msg" id="phoneError">⚠️ Vui lòng nhập số điện thoại hợp lệ (10 số, bắt đầu bằng 03, 05, 07, 08, 09)</span>
           </div>
 
-          <!-- Địa chỉ nhận hàng -->
+          <!-- Địa chỉ nhận hàng (Cascader) -->
           <div class="form-group-item address-cascader">
-            <label style="font-weight: 700; font-size: 13px; color: #334155;">Địa chỉ nhận hàng <span class="req">*</span></label>
-            <select class="form-control-select" id="provinceSelect" style="font-size: 14px; height: 44px;" required>
+            <label>
+              <span class="label-icon">📍</span> Địa chỉ nhận hàng (Giao tận nhà) <span class="req">*</span>
+            </label>
+            <select class="form-control-select" id="provinceSelect" required>
               <option value="" disabled selected>1. Chọn Tỉnh / Thành phố</option>
             </select>
-            <select class="form-control-select" id="districtSelect" style="font-size: 14px; height: 44px;" required disabled>
+            <select class="form-control-select" id="districtSelect" required disabled>
               <option value="" disabled selected>2. Chọn Quận / Huyện</option>
             </select>
-            <select class="form-control-select" id="wardSelect" style="font-size: 14px; height: 44px;" required disabled>
+            <select class="form-control-select" id="wardSelect" required disabled>
               <option value="" disabled selected>3. Chọn Phường / Xã</option>
             </select>
-            <input type="text" class="form-control-input" id="streetInput" placeholder="Số nhà, tên đường, thôn/xóm..." style="font-size: 15px; height: 44px;" required>
-            <span class="field-error-msg" id="addressError" style="display: none; color: #dc2626; font-size: 11.5px; font-weight: 600; margin-top: 4px;">⚠️ Vui lòng chọn đầy đủ Tỉnh, Huyện, Xã và nhập số nhà</span>
+            <input type="text" class="form-control-input" id="streetInput" placeholder="Số nhà, tên đường, thôn/xóm..." autocomplete="street-address" required>
+            <span class="field-error-msg" id="addressError">⚠️ Vui lòng chọn đầy đủ Tỉnh, Huyện, Xã và nhập số nhà / thôn xóm</span>
           </div>
 
           <!-- Ghi chú -->
           <div class="form-group-item" style="margin-bottom: 0;">
-            <label for="orderNotes" style="font-weight: 700; font-size: 13px; color: #334155;">Ghi chú giao hàng (Tùy chọn)</label>
-            <input type="text" class="form-control-input" id="orderNotes" name="notes" placeholder="VD: Giao giờ hành chính, gọi trước khi giao..." style="font-size: 14px; height: 42px;">
+            <label for="orderNotes">
+              <span class="label-icon">📝</span> Ghi chú đơn hàng (Tùy chọn)
+            </label>
+            <input type="text" class="form-control-input" id="orderNotes" name="notes" placeholder="VD: Giao giờ hành chính, gọi trước khi giao...">
           </div>
         </div>
 
@@ -272,14 +872,14 @@
             <span>💳</span> 3. PHƯƠNG THỨC THANH TOÁN
           </div>
           
-          <label style="display: flex; align-items: flex-start; gap: 10px; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: var(--radius-md); padding: 12px; cursor: pointer;">
-            <input type="radio" name="payment_method" value="COD" checked style="margin-top: 3px; accent-color: #16a34a;">
+          <label style="display: flex; align-items: flex-start; gap: 10px; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 12px; cursor: pointer;">
+            <input type="radio" name="payment_method" value="COD" checked style="margin-top: 3px; accent-color: #16a34a; width: 18px; height: 18px;">
             <div>
               <div style="font-size: 14px; font-weight: 800; color: #166534;">
                 🚚 Thanh toán khi nhận hàng (COD)
               </div>
-              <div style="font-size: 12px; color: #334155; margin-top: 2px; line-height: 1.4;">
-                Quý khách được mở thùng xốp kiểm tra trứng phôi khỏe mẩy trước khi thanh toán tiền cho nhân viên giao hàng. An tâm 100%!
+              <div style="font-size: 12px; color: #334155; margin-top: 3px; line-height: 1.4;">
+                Quý khách được mở thùng xốp kiểm tra trứng phôi khỏe mẩy trước khi thanh toán tiền cho shipper. An tâm 100%!
               </div>
             </div>
           </label>
@@ -294,7 +894,7 @@
           <div class="checkout-invoice-table">
             <div class="checkout-invoice-row">
               <span>Tiền hàng:</span>
-              <span id="invGoodsPrice" style="font-weight: 700;">1.000.000₫</span>
+              <span id="invGoodsPrice" style="font-weight: 800; color: #0f172a;">1.000.000₫</span>
             </div>
             <div class="checkout-invoice-row">
               <span>Quà tặng kèm:</span>
@@ -302,15 +902,15 @@
             </div>
             <div class="checkout-invoice-row">
               <span>Phí vận chuyển hỏa tốc:</span>
-              <span style="color: #059669; font-weight: 700;"><del style="color: #94a3b8; font-weight: 400; margin-right: 4px;">30.000₫</del> MIỄN PHÍ</span>
+              <span style="color: #059669; font-weight: 800;"><del style="color: #94a3b8; font-weight: 400; margin-right: 4px;">30.000₫</del> MIỄN PHÍ</span>
             </div>
             <div class="checkout-invoice-row">
               <span>Đóng thùng xốp giữ ẩm:</span>
-              <span style="color: #059669; font-weight: 700;">MIỄN PHÍ</span>
+              <span style="color: #059669; font-weight: 800;">MIỄN PHÍ</span>
             </div>
             <div class="checkout-invoice-row total-row">
               <div>
-                <div style="font-size: 13px; font-weight: 800; color: #1e293b;">TỔNG THANH TOÁN (COD):</div>
+                <div style="font-size: 13.5px; font-weight: 800; color: #1e293b;">TỔNG THANH TOÁN (COD):</div>
                 <div style="font-size: 11px; color: #64748b;">(Đã gồm Freeship &amp; Quà tặng)</div>
               </div>
               <div class="checkout-total-val" id="invTotalPrice">1.000.000₫</div>
@@ -322,10 +922,10 @@
 
           <!-- Submit Button -->
           <button type="submit" class="btn-checkout-confirm" id="btnSubmitCheckout">
-            <span>✓</span> XÁC NHẬN ĐẶT HÀNG NGAY (GIAO HỎA TỐC) ➔
+            <span>✓</span> XÁC NHẬN ĐẶT HÀNG (GIAO HỎA TỐC) ➔
           </button>
           
-          <div style="text-align: center; margin-top: 10px; font-size: 11.5px; color: #64748b; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <div style="text-align: center; margin-top: 12px; font-size: 11.5px; color: #64748b; display: flex; align-items: center; justify-content: center; gap: 6px;">
             <span>🔒</span> Cam kết bảo mật thông tin • Đổi mới 100% nếu phôi lỗi
           </div>
         </div>
@@ -338,7 +938,7 @@
     <div id="checkoutSuccessView" style="display: none;">
       <div class="checkout-success-box">
         <div class="success-check-icon">✓</div>
-        <h2 style="font-size: 21px; font-weight: 900; color: #15803d; margin-bottom: 6px;">
+        <h2 style="font-size: 22px; font-weight: 900; color: #15803d; margin-bottom: 6px;">
           ĐẶT HÀNG THÀNH CÔNG!
         </h2>
         <p style="font-size: 13px; color: #475569; margin-bottom: 16px;">
@@ -346,160 +946,192 @@
         </p>
 
         <!-- Order Detail Summary Card -->
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 14px; text-align: left; margin-bottom: 20px;">
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; text-align: left; margin-bottom: 20px;">
           <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 10px;">
-            <strong style="color: #64748b; font-size: 12px;">MÃ ĐƠN HÀNG:</strong>
-            <span id="succOrderCode" style="font-size: 14px; font-weight: 900; color: #2563eb;">CC-85921</span>
+            <span style="font-size: 12px; color: #64748b; font-weight: 600;">Mã đơn hàng:</span>
+            <span id="succOrderCode" style="font-size: 14px; font-weight: 900; color: #0284c7;">CC-91823</span>
           </div>
-          <div style="font-size: 13px; line-height: 1.6; color: #334155;">
-            <div><strong>Người nhận:</strong> <span id="succName">--</span></div>
-            <div><strong>Số điện thoại:</strong> <span id="succPhone">--</span></div>
-            <div><strong>Giao đến:</strong> <span id="succAddress">--</span></div>
-            <div><strong>Gói đặt:</strong> <span id="succProduct">--</span></div>
-            <div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed #cbd5e1; display: flex; justify-content: space-between; align-items: baseline;">
-              <strong style="font-size: 14px; color: #1e293b;">Số tiền COD cần trả:</strong>
-              <span id="succTotal" style="font-size: 18px; font-weight: 900; color: #dc2626;">--</span>
-            </div>
+          <div style="font-size: 13px; margin-bottom: 6px;">
+            <strong style="color: #334155;">Người nhận:</strong> <span id="succName">Nguyễn Văn An</span>
+          </div>
+          <div style="font-size: 13px; margin-bottom: 6px;">
+            <strong style="color: #334155;">Điện thoại:</strong> <span id="succPhone">0935127132</span>
+          </div>
+          <div style="font-size: 13px; margin-bottom: 6px;">
+            <strong style="color: #334155;">Địa chỉ giao:</strong> <span id="succAddress">...</span>
+          </div>
+          <div style="font-size: 13px; margin-bottom: 6px;">
+            <strong style="color: #334155;">Gói đặt mua:</strong> <span id="succProduct" style="color: #15803d; font-weight: 700;">...</span>
+          </div>
+          <div style="font-size: 14px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #cbd5e1; display: flex; justify-content: space-between;">
+            <strong style="color: #0f172a;">Tổng tiền COD:</strong>
+            <span id="succTotal" style="font-size: 16px; font-weight: 900; color: #dc2626;">...</span>
           </div>
         </div>
 
-        <!-- Action Buttons -->
+        <p style="font-size: 12.5px; color: #64748b; margin-bottom: 18px; line-height: 1.5;">
+          Trang trại sẽ gọi điện xác nhận và gửi kèm <strong>video hướng dẫn cách ấp chi tiết</strong> qua Zalo cho bạn.
+        </p>
+
         <div style="display: flex; flex-direction: column; gap: 10px;">
-          <a href="https://zalo.me/0935127132" target="_blank" class="btn-checkout-confirm" style="text-decoration: none; background: #0284c7; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4); margin: 0;">
-            <span>💬</span> Nhắn Zalo Trại (Ưu Tiên Gửi Sớm)
+          <a href="https://zalo.me/0935127132" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #0068ff; color: #ffffff; padding: 13px; border-radius: 9999px; font-weight: 800; font-size: 15px; text-decoration: none; box-shadow: 0 4px 14px rgba(0, 104, 255, 0.35);">
+            <span>💬</span> Nhắn Zalo Trang Trại
           </a>
-          <a href="tel:0935127132" class="btn-checkout-confirm" style="text-decoration: none; background: #16a34a; box-shadow: 0 4px 15px rgba(22, 163, 74, 0.4); margin: 0;">
-            <span>📞</span> Gọi Hotline Trại 0935.127.132
-          </a>
-          <a href="/" style="display: inline-block; padding: 12px; color: #64748b; font-size: 13px; font-weight: 700; text-decoration: none;">
-            ← Quay về Trang Chủ
+          <a href="/" style="display: flex; align-items: center; justify-content: center; background: #f1f5f9; color: #475569; padding: 12px; border-radius: 9999px; font-weight: 700; font-size: 14px; text-decoration: none;">
+            ← Về Trang Chủ
           </a>
         </div>
       </div>
-    </div>
+    </div><!-- End #checkoutSuccessView -->
 
   </div><!-- End .checkout-wrapper -->
 
   <!-- Site Footer -->
-  <footer class="site-footer">
-    <div class="footer-brand">
-      <h3>TRANG TRẠI CÀO CÀO VIỆT NAM</h3>
-      <p>Cơ sở cung cấp trứng cào cào cốm giống &amp; hướng dẫn kỹ thuật nuôi uy tín hàng đầu toàn quốc.</p>
-    </div>
-
-    <div class="footer-contact-list">
-      <div class="footer-contact-item">
-        <span>📍</span> Địa chỉ: Trang Trại Nuôi Cào Cào Cốm Giống Chuẩn
-      </div>
-      <div class="footer-contact-item">
-        <span>📞</span> Hotline/Zalo: <a href="tel:0935127132">0935.127.132</a>
-      </div>
-      <div class="footer-contact-item">
-        <span>🚚</span> Giao hàng: Giao hỏa tốc &amp; Freeship tận nhà trên toàn quốc
-      </div>
-      <div class="footer-contact-item">
-        <span>🕒</span> Giờ làm việc: 07:00 - 22:00 (Tất cả các ngày trong tuần)
-      </div>
-    </div>
-
-    <div class="footer-copyright">
-      © 2026 Trang Trại Cào Cào. Bản quyền thuộc về Trang Trại Cào Cào Việt Nam.
-    </div>
+  <footer style="background: #1e293b; color: #cbd5e1; padding: 24px 16px 80px; font-size: 12px; text-align: center; border-top: 1px solid #334155;">
+    <div style="font-weight: 800; color: #ffffff; font-size: 14px; margin-bottom: 6px;">TRANG TRẠI CÀO CÀO VIỆT NAM</div>
+    <div style="margin-bottom: 4px;">Hotline tư vấn &amp; đặt hàng: <strong style="color: #4ade80;">0935.127.132</strong></div>
+    <div>Trứng tuyển chọn phôi khỏe mẩy • Giao hỏa tốc toàn quốc</div>
   </footer>
 
 </div><!-- End .page-container -->
 
-<!-- Loading Overlay -->
-<div class="loading-backdrop" id="checkoutLoadingOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15,23,42,0.7); z-index: 2000; align-items: center; justify-content: center; flex-direction: column; gap: 12px;">
-  <div class="loading-spinner"></div>
-  <p style="font-size: 14px; font-weight: 700; color: #ffffff;">Đang gửi đơn hàng về trang trại...</p>
-</div>
-
-<!-- Floating Action Buttons -->
+<!-- Floating Actions (Zalo & Phone) -->
 <div class="floating-actions">
   <a href="https://zalo.me/0935127132" target="_blank" class="floating-btn floating-btn-zalo" title="Chat Zalo">
-    <svg viewBox="0 0 48 48"><path d="M24 4C12.95 4 4 12.95 4 24c0 3.93 1.13 7.6 3.09 10.72L4 44l9.55-3.05C16.53 42.82 20.14 44 24 44c11.05 0 20-8.95 20-20S35.05 4 24 4zm11.23 27.67c-.47 1.33-2.34 2.45-3.83 2.76-.99.21-2.29.38-6.66-1.43-5.59-2.31-9.19-8.01-9.47-8.38-.28-.37-2.27-3.02-2.27-5.77s1.44-4.1 1.95-4.66c.51-.56 1.12-.7 1.49-.7.37 0 .75.01 1.07.02.35.02.82-.13 1.28.98.47 1.12 1.6 3.9 1.74 4.18.14.28.23.6.05.97-.18.37-.28.6-.56.93-.28.33-.59.73-.84.98-.28.28-.57.58-.25 1.14.33.56 1.45 2.39 3.12 3.88 2.15 1.91 3.96 2.51 4.52 2.79.56.28.93.42 1.07.65.14.23.14 1.35-.33 2.68z"/></svg>
+    <svg viewBox="0 0 48 48"><path d="M24 4C12.95 4 4 12.95 4 24c0 3.93 1.13 7.6 3.09 10.72L4 44l9.55-3.05C16.53 42.82 20.14 44 24 44c11.05 0 20-8.95 20-20S35.05 4 24 4zm11.23 27.67c-.47 1.33-2.34 2.45-3.83 2.76-.99.21-2.29.38-6.66-1.43-5.59-2.31-9.19-8.01-9.47-8.38-.28-.37-2.27-3.02-2.27-5.77s1.44-4.1 1.95-4.66c.51-.56 1.12-.7 1.49-.7.37 0 .75.01 1.07.02.35.02.82-.13 1.28.98.47 1.12 1.6 3.9 1.74 4.18.14.28.23.6.05.97-.18.37-.28.6-.56.93-.28.33-.59.73-.84.98-.28.28-.57.58-.25 1.14.33.56 1.45 2.39 3.12 3.88 2.15 1.91 3.96 2.51 4.52 2.79.56.28.89.23 1.21-.14.33-.37 1.4-1.63 1.77-2.19.37-.56.75-.47 1.26-.28.51.19 3.26 1.54 3.82 1.82.56.28.93.42 1.07.65.14.23.14 1.35-.33 2.68z"/></svg>
   </a>
-  <a href="tel:0935127132" class="floating-btn floating-btn-phone" title="Gọi Điện">
+  <a href="tel:0935127132" class="floating-btn floating-btn-phone" title="Gọi Hotline">
     <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
   </a>
 </div>
 
-<!-- SCRIPTS -->
+<!-- Loading Overlay -->
+<div class="loading-backdrop" id="checkoutLoadingOverlay">
+  <div class="loading-spinner"></div>
+  <p style="font-size: 14px; font-weight: 700; color: #ffffff;">Đang gửi đơn hàng về trang trại...</p>
+</div>
+
+<!-- Scripts -->
 <script src="../assets/provinces.js"></script>
 <script>
-// ===================================================
-// CHECKOUT PAGE ENGINE
-// ===================================================
-(function () {
+(function() {
+  'use strict';
+
+  // GOOGLE APPS SCRIPT WEB APP URL
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxR55m-6TAXw8hmAlI4tj5rv9TZIAc7RbyYzWlCgi2RZqtQIUQnrH0WTPhfeEqN3QN4Zw/exec';
 
   const PACK_DATA = {
-    '50': { name: '50 Trứng Cào Cào Cốm Giống', price: 149000, oldPrice: 190000, bonus: '+5 trứng (10%)', desc: 'Thử nghiệm thùng xốp nhỏ', thumb: '../assets/22.jpg' },
-    '100': { name: '100 Trứng Cào Cào Cốm Giống', price: 270000, oldPrice: 320000, bonus: '+10 trứng (10%)', desc: 'Chuẩn lồng 1m²', thumb: '../assets/22.jpg' },
-    '200': { name: '200 Trứng Cào Cào Cốm Giống', price: 500000, oldPrice: 600000, bonus: '+20 trứng (10%)', desc: 'Chuẩn lồng 2m²', thumb: '../assets/22.jpg' },
-    '500': { name: '500 Trứng Cào Cào Cốm Giống', price: 1000000, oldPrice: 1200000, bonus: '+50 trứng (10%)', desc: 'Bán chạy nhất (chuẩn lồng 5m²)', thumb: '../assets/22.jpg' },
-    '1000': { name: '1.000 Trứng Cào Cào Cốm Giống', price: 1800000, oldPrice: 2100000, bonus: '+100 trứng (10%)', desc: 'Quy mô trại 10m²', thumb: '../assets/22.jpg' },
-    '2000': { name: '2.000 Trứng Cào Cào Cốm Giống', price: 3500000, oldPrice: 4000000, bonus: '+200 trứng (10%)', desc: 'Giá sỉ tối ưu nhất cho trại', thumb: '../assets/22.jpg' },
-    'si': { name: 'Tự Chọn Số Lượng Sỉ Lớn', price: 4000000, oldPrice: 5000000, bonus: '+10% trứng', desc: 'Giá sỉ 1.600₫/trứng', thumb: '../assets/22.jpg' }
+    '50': {
+      name: '50 Trứng Cào Cào Cốm Giống',
+      price: 149000,
+      oldPrice: 190000,
+      bonus: '+5 trứng (Tổng nhận: 55 trứng)',
+      save: 'Tiết kiệm 41K'
+    },
+    '100': {
+      name: '100 Trứng Cào Cào Cốm Giống',
+      price: 270000,
+      oldPrice: 320000,
+      bonus: '+10 trứng (Tổng nhận: 110 trứng)',
+      save: 'Tiết kiệm 50K'
+    },
+    '200': {
+      name: '200 Trứng Cào Cào Cốm Giống',
+      price: 500000,
+      oldPrice: 600000,
+      bonus: '+20 trứng (Tổng nhận: 220 trứng)',
+      save: 'Tiết kiệm 100K'
+    },
+    '500': {
+      name: '500 Trứng Cào Cào Cốm Giống',
+      price: 1000000,
+      oldPrice: 1200000,
+      bonus: '+50 trứng (Tổng nhận: 550 trứng)',
+      save: 'Tiết kiệm 200K'
+    },
+    '1000': {
+      name: '1.000 Trứng Cào Cào Cốm Giống',
+      price: 1800000,
+      oldPrice: 2100000,
+      bonus: '+100 trứng (Tổng nhận: 1.100 trứng)',
+      save: 'Tiết kiệm 300K'
+    },
+    '2000': {
+      name: '2.000 Trứng Cào Cào Cốm Giống',
+      price: 3500000,
+      oldPrice: 4000000,
+      bonus: '+200 trứng (Tổng nhận: 2.200 trứng)',
+      save: 'Tiết kiệm 500K'
+    },
+    'si': {
+      name: 'Trứng Cào Cào Sỉ Lớn (≥ 2.500 Trứng)',
+      price: 4000000,
+      oldPrice: 5000000,
+      bonus: '+10% trứng phôi mẩy',
+      save: 'Giá sỉ tốt nhất'
+    }
   };
+
+  function formatVND(amount) {
+    return new Intl.NumberFormat('vi-VN').format(amount) + '₫';
+  }
 
   let currentPackKey = '500';
   let currentComboQty = 1;
   let customEggQty = 2500;
 
-  // Elements
+  // DOM Elements
   const cartItemName = document.getElementById('cartItemName');
   const cartItemGift = document.getElementById('cartItemGift');
   const cartCurrentPrice = document.getElementById('cartCurrentPrice');
   const cartOldPrice = document.getElementById('cartOldPrice');
-  const cartComboQty = document.getElementById('cartComboQty');
+  const cartSaveBadge = document.getElementById('cartSaveBadge');
   const comboQtyRow = document.getElementById('comboQtyRow');
+  const cartComboQty = document.getElementById('cartComboQty');
   const customQtyBox = document.getElementById('customQtyBox');
   const customEggInput = document.getElementById('customEggInput');
   const btnCustomMinus = document.getElementById('btnCustomMinus');
   const btnCustomPlus = document.getElementById('btnCustomPlus');
+
   const invGoodsPrice = document.getElementById('invGoodsPrice');
   const invGiftText = document.getElementById('invGiftText');
   const invTotalPrice = document.getElementById('invTotalPrice');
   const finalTotalAmount = document.getElementById('finalTotalAmount');
   const packPillBtns = document.querySelectorAll('.pack-pill-btn');
 
-  function formatVND(val) {
-    return val.toLocaleString('vi-VN') + '₫';
-  }
-
   function renderCart() {
     if (currentPackKey === 'si') {
       comboQtyRow.style.display = 'none';
       customQtyBox.style.display = 'block';
 
-      if (customEggQty < 2500) customEggQty = 2500;
-      const price = customEggQty * 1600;
+      // Silent calculation: 1600 VND per egg
+      const calculatedPrice = customEggQty * 1600;
+      const calculatedOldPrice = customEggQty * 2000;
       const bonusEggs = Math.round(customEggQty * 0.1);
 
-      cartItemName.textContent = `Tự chọn số lượng sỉ: ${customEggQty.toLocaleString('vi-VN')} trứng`;
-      cartItemGift.textContent = `🎁 Tặng thêm +${bonusEggs.toLocaleString('vi-VN')} trứng (10%)`;
-      cartCurrentPrice.textContent = formatVND(price);
-      cartOldPrice.textContent = formatVND(Math.round(price * 1.25));
+      cartItemName.textContent = `Trứng Cào Cào Sỉ Lớn (${customEggQty.toLocaleString('vi-VN')} trứng)`;
+      cartItemGift.textContent = `🎁 Tặng thêm +${bonusEggs.toLocaleString('vi-VN')} trứng & Freeship`;
+      cartCurrentPrice.textContent = formatVND(calculatedPrice);
+      cartOldPrice.textContent = formatVND(calculatedOldPrice);
+      cartSaveBadge.textContent = 'Giá Sỉ Tận Gốc';
 
-      invGoodsPrice.textContent = formatVND(price);
+      invGoodsPrice.textContent = formatVND(calculatedPrice);
       invGiftText.textContent = `+${bonusEggs.toLocaleString('vi-VN')} trứng phôi mẩy`;
-      invTotalPrice.textContent = formatVND(price);
-      finalTotalAmount.value = price;
+      invTotalPrice.textContent = formatVND(calculatedPrice);
+      finalTotalAmount.value = calculatedPrice;
     } else {
       comboQtyRow.style.display = 'flex';
       customQtyBox.style.display = 'none';
 
       const pack = PACK_DATA[currentPackKey] || PACK_DATA['500'];
-      const unitPrice = pack.price;
-      const totalPrice = unitPrice * currentComboQty;
+      const totalPrice = pack.price * currentComboQty;
       const oldTotalPrice = pack.oldPrice * currentComboQty;
 
       cartItemName.textContent = pack.name;
       cartItemGift.textContent = `🎁 Tặng thêm ${pack.bonus}`;
       cartCurrentPrice.textContent = formatVND(totalPrice);
       cartOldPrice.textContent = formatVND(oldTotalPrice);
+      cartSaveBadge.textContent = pack.save;
 
       invGoodsPrice.textContent = formatVND(totalPrice);
       invGiftText.textContent = pack.bonus;
@@ -517,7 +1149,7 @@
     });
   }
 
-  // Handle URL Parameters
+  // Handle URL Parameters (e.g. ?goi=500, ?goi=100, ?goi=2000)
   const urlParams = new URLSearchParams(window.location.search);
   const paramPack = urlParams.get('goi') || urlParams.get('pack') || urlParams.get('combo');
   if (paramPack && PACK_DATA[paramPack]) {
@@ -647,7 +1279,7 @@
       initOfflineProvinces();
     });
 
-  // Form Validation & Submit
+  // Form Validation & Submit Handlers
   const form = document.getElementById('checkoutMainForm');
   const nameInput = document.getElementById('fullname');
   const phoneInput = document.getElementById('phone');
@@ -658,6 +1290,11 @@
   const loadingOverlay = document.getElementById('checkoutLoadingOverlay');
   const checkoutFormView = document.getElementById('checkoutFormView');
   const checkoutSuccessView = document.getElementById('checkoutSuccessView');
+
+  // Clear errors on input
+  nameInput.addEventListener('input', () => { nameError.style.display = 'none'; nameInput.style.borderColor = '#cbd5e1'; });
+  phoneInput.addEventListener('input', () => { phoneError.style.display = 'none'; phoneInput.style.borderColor = '#cbd5e1'; });
+  streetInput.addEventListener('input', () => { addressError.style.display = 'none'; streetInput.style.borderColor = '#cbd5e1'; });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -689,9 +1326,11 @@
     // Validate Address
     if (!provinceSelect.value || !districtSelect.value || !wardSelect.value || !streetInput.value.trim()) {
       addressError.style.display = 'block';
+      if (!streetInput.value.trim()) streetInput.style.borderColor = '#dc2626';
       isValid = false;
     } else {
       addressError.style.display = 'none';
+      streetInput.style.borderColor = '#cbd5e1';
     }
 
     if (!isValid) {

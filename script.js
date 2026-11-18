@@ -829,4 +829,52 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // ===================================================
+  // 10. PRODUCT COMBO SELECTION & STICKY BUY BAR SYNC
+  // ===================================================
+  const comboCards = document.querySelectorAll('.combo-card-item');
+  const stickyBottomBar = document.getElementById('stickyBottomBar');
+  const stickySelectedLabel = document.getElementById('stickySelectedLabel');
+  const stickyPriceDisplay = document.getElementById('stickyPriceDisplay');
+  const stickyBonusTag = document.getElementById('stickyBonusTag');
+  const stickyBuyBtn = document.getElementById('stickyBuyBtn');
+
+  function updateStickyBar(card, triggerPulse = true) {
+    if (!card) return;
+    comboCards.forEach(c => c.classList.remove('selected-card'));
+    card.classList.add('selected-card');
+
+    const key = card.getAttribute('data-key') || '500';
+    const name = card.getAttribute('data-name') || '500 Trứng Giống';
+    const price = card.getAttribute('data-price') || '1.000.000₫';
+    const gift = card.getAttribute('data-gift') || '🎁 Tặng thêm trứng & Freeship';
+
+    if (stickySelectedLabel) stickySelectedLabel.textContent = 'Đang chọn: ' + name;
+    if (stickyPriceDisplay) stickyPriceDisplay.textContent = price;
+    if (stickyBonusTag) stickyBonusTag.textContent = gift;
+    if (stickyBuyBtn) stickyBuyBtn.href = '/thanh-toan?goi=' + key;
+
+    if (triggerPulse && stickyBottomBar) {
+      stickyBottomBar.classList.remove('pulse-update');
+      void stickyBottomBar.offsetWidth; // trigger reflow
+      stickyBottomBar.classList.add('pulse-update');
+    }
+  }
+
+  if (comboCards.length) {
+    comboCards.forEach(card => {
+      card.addEventListener('click', function (e) {
+        // If clicking directly on the button, let normal navigation happen
+        if (e.target.closest('.btn-combo-order')) return;
+        updateStickyBar(this, true);
+      });
+    });
+
+    // Initialize with default or marked selected card
+    const initialCard = document.querySelector('.combo-card-item.selected-card') || document.querySelector('.combo-card-item.featured') || comboCards[0];
+    if (initialCard) {
+      updateStickyBar(initialCard, false);
+    }
+  }
+
 });
