@@ -821,20 +821,22 @@
             </div>
           </div>
 
-          <!-- Subtotal in Step 1 -->
-          <div class="step1-subtotal-panel">
-            <div class="step1-subtotal-row">
-              <span>Tạm tính tiền hàng:</span>
-              <span class="step1-price-display" id="step1Subtotal">149.000₫</span>
+          <!-- Sticky Footer in Step 1 -->
+          <div class="sheet-step-footer">
+            <div class="step1-subtotal-panel">
+              <div class="step1-subtotal-row">
+                <span>Tạm tính tiền hàng:</span>
+                <span class="step1-price-display" id="step1Subtotal">149.000₫</span>
+              </div>
+              <div class="step1-gift-display" id="step1GiftNotice">
+                🎁 Đã gồm: Tặng thêm +5 trứng (10%)
+              </div>
             </div>
-            <div class="step1-gift-display" id="step1GiftNotice">
-              🎁 Đã gồm: Tặng thêm +5 trứng (10%)
-            </div>
-          </div>
 
-          <button type="button" class="btn-sheet-submit" id="btnNextToStep2">
-            TIẾP TỤC (ĐIỀN ĐỊA CHỈ NHẬN HÀNG) ➔
-          </button>
+            <button type="button" class="btn-sheet-submit" id="btnNextToStep2">
+              TIẾP TỤC (ĐIỀN ĐỊA CHỈ NHẬN HÀNG) ➔
+            </button>
+          </div>
         </div>
 
         <!-- STEP 2: THÔNG TIN GIAO HÀNG & THANH TOÁN -->
@@ -892,26 +894,28 @@
             </button>
           </div>
 
-          <!-- Final Invoice Summary -->
-          <div class="final-invoice-box">
-            <div class="invoice-row">
-              <span>Tiền hàng:</span>
-              <span id="invoiceGoodsPrice">149.000₫</span>
+          <!-- Sticky Footer in Step 2 -->
+          <div class="sheet-step-footer">
+            <div class="final-invoice-box">
+              <div class="invoice-row">
+                <span>Tiền hàng:</span>
+                <span id="invoiceGoodsPrice">149.000₫</span>
+              </div>
+              <div class="invoice-row">
+                <span>Phí vận chuyển:</span>
+                <span class="invoice-fee-text" id="invoiceShipFee">30.000₫</span>
+              </div>
+              <div class="invoice-row">
+                <span>Tổng thanh toán khi nhận hàng:</span>
+                <span class="invoice-total-text" id="invoiceTotal">179.000₫</span>
+              </div>
+              <input type="hidden" name="total_amount" id="totalAmountHidden" value="179000">
             </div>
-            <div class="invoice-row">
-              <span>Phí vận chuyển:</span>
-              <span class="invoice-fee-text" id="invoiceShipFee">30.000₫</span>
-            </div>
-            <div class="invoice-row">
-              <span>Tổng thanh toán khi nhận hàng:</span>
-              <span class="invoice-total-text" id="invoiceTotal">179.000₫</span>
-            </div>
-            <input type="hidden" name="total_amount" id="totalAmountHidden" value="179000">
-          </div>
 
-          <button type="button" class="btn-sheet-submit" id="btnProceedOrder">
-            <span>✓</span> TIẾN HÀNH ĐẶT HÀNG
-          </button>
+            <button type="button" class="btn-sheet-submit" id="btnProceedOrder">
+              <span>✓</span> TIẾN HÀNH ĐẶT HÀNG
+            </button>
+          </div>
         </div>
 
       </form>
