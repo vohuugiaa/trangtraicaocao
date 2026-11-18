@@ -1402,15 +1402,22 @@ body {
 =================================================== */
 .floating-actions {
   position: fixed;
-  right: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--container-max-w);
   bottom: 84px;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+  padding-right: 16px;
   gap: 10px;
   z-index: 85;
+  pointer-events: none;
 }
 
 .floating-btn {
+  pointer-events: auto;
   width: 44px;
   height: 44px;
   border-radius: 50%;
