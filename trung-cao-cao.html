@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Trứng Cào Cào Cốm Giống Chuẩn Siêu Nở - Trang Trại Cào Cào Việt Nam</title>
+  <title>Bảng Giá Trứng Cào Cào Cốm Giống & Đặt Mua Trực Tuyến - Trang Trại Cào Cào</title>
   
   <!-- SEO & Social Sharing Meta -->
   <meta name="description" content="Bảng giá trứng cào cào cốm giống chuẩn phôi mẩy, tỷ lệ nở >90%. Tặng kèm 10% trứng, Freeship toàn quốc, nhận hàng kiểm tra trước khi thanh toán.">
@@ -20,7 +20,7 @@
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Trứng Cào Cào Cốm Giống Chuẩn Siêu Nở">
+  <meta name="twitter:title" content="Bảng Giá Trứng Cào Cào Cốm Giống & Đặt Mua Trực Tuyến">
   <meta name="twitter:description" content="Bảng giá trứng cào cào cốm giống chuẩn phôi mẩy, tỷ lệ nở >90%. Tặng kèm 10% trứng & Freeship.">
   <meta name="twitter:image" content="https://trangtraicaocao.com/assets/22.jpg">
 
@@ -135,15 +135,187 @@
     </a>
   </nav>
 
-  <!-- Breadcrumb Bar -->
-  <div style="padding: 10px 16px 2px; font-size: 12px; color: #64748b; display: flex; align-items: center; gap: 6px; background: #f8fafc; border-bottom: 1px solid #f1f5f9;">
-    <a href="/" style="color: var(--primary-dark); text-decoration: none; font-weight: 600;">Trang Chủ</a>
-    <span>›</span>
-    <span style="color: var(--text-main); font-weight: 700;">Trứng Cào Cào Cốm Giống</span>
+  <!-- Page Hero Banner (Green Gradient Banner - Matching Screenshot) -->
+  <div class="page-hero-banner">
+    <div class="page-hero-tag">🌟 BÁO GIÁ TRỰC TIẾP TỪ TRẠI</div>
+    <h1 class="page-hero-title">BẢNG GIÁ TRỨNG CÀO CÀO CỐM GIỐNG</h1>
+    <p class="page-hero-sub">
+      Trứng tuyển chọn phôi khỏe mẩy, đóng thùng xốp chống sốc giữ ẩm hỏa tốc toàn quốc. Tặng thêm 10% trứng và Freeship tận tay!
+    </p>
   </div>
 
-  <!-- Hero Media Slider (Swiper) -->
-  <section class="hero-gallery">
+  <!-- Flash Sale Box (Matching Screenshot) -->
+  <section class="flash-sale-box" style="margin-top: 14px;">
+    <div class="flash-sale-header">
+      <div class="flash-title-wrap">
+        <span class="flash-flame-icon">🔥</span>
+        <span>GIỜ VÀNG TRỢ GIÁ</span>
+      </div>
+      <div class="countdown-wrap">
+        <span>KẾT THÚC TRONG:</span>
+        <div class="countdown-digits" id="countdownTimer">02:15:30</div>
+      </div>
+    </div>
+    
+    <div class="product-summary-card">
+      <div class="product-price-row">
+        <div class="current-price-wrap">
+          Chỉ từ <span id="heroPricePreview">149.000₫</span>
+        </div>
+        <div class="original-price-wrap">
+          Giá gốc: <del id="heroOldPricePreview">190.000₫</del>
+        </div>
+      </div>
+      <div class="stock-progress-wrap">
+        <div class="stock-text-row">
+          <span>⚡ Đang được đặt mua nhiều</span>
+          <span>Đã bán 858 / 862 combo</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 98%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Head: Danh Sách Gói Giống (Matching Screenshot) -->
+  <section class="combos-section" style="padding-top: 6px;">
+    <div class="section-head">
+      <span class="section-badge-tag">DANH SÁCH GÓI GIỐNG</span>
+      <h2 class="section-title">CHỌN GÓI PHÙ HỢP VỚI BẠN</h2>
+      <p class="section-subtitle">Mọi đơn hàng đều được tặng thêm +10% trứng và bảo hành 100% đổi mới nếu phôi lỗi do kỹ thuật của trại.</p>
+    </div>
+
+    <!-- Product Combos List (Beautifully Styled Cards) -->
+    <div class="combos-list">
+      
+      <!-- Combo 1: 50 Trứng -->
+      <div class="combo-card-item" data-pack="Trứng Cào Cào (50 trứng)">
+        <div class="combo-left">
+          <div class="combo-name">
+            50 Trứng Giống
+          </div>
+          <div class="combo-suitability">💡 Dành cho nuôi thử nghiệm thùng xốp nhỏ (~1.000 con non nở)</div>
+          <div class="combo-gift">🎁 Tặng thêm +5 trứng (Tổng: 55 trứng)</div>
+        </div>
+        <div class="combo-right">
+          <div class="combo-price">149.000₫</div>
+          <div class="combo-old-price">190.000₫</div>
+          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (50 trứng)')">Đặt Mua</button>
+        </div>
+      </div>
+
+      <!-- Combo 2: 100 Trứng -->
+      <div class="combo-card-item" data-pack="Trứng Cào Cào (100 trứng)">
+        <div class="combo-left">
+          <div class="combo-name">
+            100 Trứng Giống
+          </div>
+          <div class="combo-suitability">💡 Chuẩn lồng nuôi diện tích 1m² (~2.000 con non nở)</div>
+          <div class="combo-gift">🎁 Tặng thêm +10 trứng (Tổng: 110 trứng)</div>
+        </div>
+        <div class="combo-right">
+          <div class="combo-price">270.000₫</div>
+          <div class="combo-old-price">320.000₫</div>
+          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (100 trứng)')">Đặt Mua</button>
+        </div>
+      </div>
+
+      <!-- Combo 3: 200 Trứng -->
+      <div class="combo-card-item" data-pack="Trứng Cào Cào (200 trứng)">
+        <div class="combo-left">
+          <div class="combo-name">
+            200 Trứng Giống
+          </div>
+          <div class="combo-suitability">💡 Chuẩn lồng nuôi 2m² (~4.000 con non cho 3-5 lồng chim)</div>
+          <div class="combo-gift">🎁 Tặng thêm +20 trứng (Tổng: 220 trứng)</div>
+        </div>
+        <div class="combo-right">
+          <div class="combo-price">500.000₫</div>
+          <div class="combo-old-price">600.000₫</div>
+          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (200 trứng)')">Đặt Mua</button>
+        </div>
+      </div>
+
+      <!-- Combo 4: 500 Trứng (BEST SELLER) -->
+      <div class="combo-card-item featured" data-pack="Trứng Cào Cào (500 trứng)">
+        <div class="combo-left">
+          <div class="combo-badge-row">
+            <span class="badge-pill-hot">🔥 BÁN CHẠY NHẤT</span>
+            <span class="badge-pill-gift">TIẾT KIỆM 200K</span>
+          </div>
+          <div class="combo-name">
+            500 Trứng Giống
+          </div>
+          <div class="combo-suitability">💡 Chuẩn lồng 5m² (~10.000 con non, gói được chọn nhiều nhất)</div>
+          <div class="combo-gift">🎁 Tặng thêm +50 trứng (Tổng: 550 trứng)</div>
+        </div>
+        <div class="combo-right">
+          <div class="combo-price">1.000.000₫</div>
+          <div class="combo-old-price">1.200.000₫</div>
+          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (500 trứng)')">Đặt Mua</button>
+        </div>
+      </div>
+
+      <!-- Combo 5: 1.000 Trứng -->
+      <div class="combo-card-item" data-pack="Trứng Cào Cào (1000 trứng)">
+        <div class="combo-left">
+          <div class="combo-name">
+            1.000 Trứng Giống
+          </div>
+          <div class="combo-suitability">💡 Nuôi lồng 10m² - Nở ~20.000 con non quy mô trang trại</div>
+          <div class="combo-gift">🎁 Tặng thêm +100 trứng (Tổng: 1.100 trứng)</div>
+        </div>
+        <div class="combo-right">
+          <div class="combo-price">1.800.000₫</div>
+          <div class="combo-old-price">2.100.000₫</div>
+          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (1000 trứng)')">Đặt Mua</button>
+        </div>
+      </div>
+
+      <!-- Combo 6: 2.000 Trứng (GIÁ SỈ) -->
+      <div class="combo-card-item" data-pack="Trứng Cào Cào (2000 trứng)">
+        <div class="combo-left">
+          <div class="combo-badge-row">
+            <span class="badge-pill-hot" style="background: #059669;">💰 GIÁ SỈ TỐT NHẤT</span>
+          </div>
+          <div class="combo-name">
+            2.000 Trứng Giống
+          </div>
+          <div class="combo-suitability">💡 Giá sỉ tối ưu nhất cho trại lớn (~40.000 con non)</div>
+          <div class="combo-gift">🎁 Tặng thêm +200 trứng (Tổng: 2.200 trứng)</div>
+        </div>
+        <div class="combo-right">
+          <div class="combo-price">3.500.000₫</div>
+          <div class="combo-old-price">4.000.000₫</div>
+          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (2000 trứng)')">Đặt Mua</button>
+        </div>
+      </div>
+
+      <!-- Combo 7: Tự Chọn Số Lượng Lớn (Giá sỉ) -->
+      <div class="combo-card-item" data-pack="Tùy chọn số lượng" style="border: 2px dashed #2563eb; background: #eff6ff;">
+        <div class="combo-left">
+          <div class="combo-badge-row">
+            <span class="badge-pill-hot" style="background: #2563eb;">🔥 ĐẶT SỈ TỰ CHỌN</span>
+          </div>
+          <div class="combo-name">
+            Số Lượng Lớn (≥ 2.500 Trứng)
+          </div>
+          <div class="combo-suitability">💡 Tự nhập số lượng trứng theo nhu cầu trang trại lớn của bạn</div>
+          <div class="combo-gift" style="background: #dbeafe; color: #1d4ed8; border-color: #93c5fd;">🎁 Tặng thêm +10% trứng & Freeship</div>
+        </div>
+        <div class="combo-right">
+          <div class="combo-price" style="color: #2563eb;">Giá Sỉ Tận Gốc</div>
+          <div class="combo-old-price">Ưu đãi tối đa</div>
+          <button type="button" class="btn-combo-order" style="background: #2563eb;" onclick="openOrderWithPack('Tùy chọn số lượng')">Nhập Số Lượng</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Media Slider: Video & Hình Ảnh Nở Thực Tế -->
+  <section class="hero-gallery" style="margin-top: 14px;">
     <div class="badge-freeship-floating">
       <span>🚀</span> FREESHIP TOÀN QUỐC
     </div>
@@ -153,7 +325,7 @@
         <!-- Slide 1: Video Clip Hướng Dẫn & Nở Thực Tế -->
         <div class="swiper-slide">
           <div class="video-slide-container">
-            <video id="albumVideo" src="assets/video.mp4" playsinline preload="metadata" poster="/assets/trung-cao-cao-1.jpg"></video>
+            <video id="albumVideo" src="assets/video.mp4" playsinline preload="metadata" poster="assets/trung-cao-cao-1.jpg"></video>
             <div class="video-play-overlay" id="videoPlayOverlay">
               <div class="play-circle-btn">
                 <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
@@ -201,206 +373,6 @@
       
       <!-- Swiper Pagination -->
       <div class="swiper-pagination"></div>
-    </div>
-  </section>
-
-  <!-- Flash Sale & Pricing Widget -->
-  <section class="flash-sale-box">
-    <div class="flash-sale-header">
-      <div class="flash-title-wrap">
-        <span class="flash-flame-icon">🔥</span>
-        <span>GIỜ VÀNG GIÁ SỐC</span>
-      </div>
-      <div class="countdown-wrap">
-        <span>KẾT THÚC TRONG:</span>
-        <div class="countdown-digits" id="countdownTimer">02:15:30</div>
-      </div>
-    </div>
-
-    <div class="product-meta-section">
-      <h1 class="product-title">Trứng Cào Cào Cốm Giống Chuẩn Siêu Nở - Bao Phôi Khỏe</h1>
-      
-      <div class="rating-and-badges">
-        <div class="rating-stars">
-          ★★★★★ <span>4.9/5</span>
-        </div>
-        <span class="rating-count">(1.340+ khách hàng hài lòng)</span>
-        <span class="badge-tag-quality">✓ Bao Phôi Chuẩn</span>
-      </div>
-
-      <div class="price-container">
-        <div class="price-main">
-          Chỉ từ <span id="heroPricePreview">149.000₫</span>
-        </div>
-        <div class="price-original">
-          Giá gốc: <del>190.000₫</del>
-        </div>
-        <span class="price-save-badge">Tiết kiệm tới 25%</span>
-      </div>
-
-      <!-- Stock Sold Progress Bar -->
-      <div class="stock-bar-wrap">
-        <div class="stock-text-overlay">
-          <span>🔥</span> ĐÃ BÁN: <strong>856 / 862 COMBO</strong> (CHỈ CÒN 6 COMBO)
-        </div>
-        <div class="stock-progress-fill" style="width: 98%;"></div>
-      </div>
-    </div>
-
-    <!-- Quick Perks Grid -->
-    <div class="quick-perks-grid">
-      <div class="perk-item">
-        <div class="perk-icon-circle">🚀</div>
-        <span>Miễn phí ship toàn quốc</span>
-      </div>
-      <div class="perk-item">
-        <div class="perk-icon-circle">🎁</div>
-        <span>Tặng thêm +10% trứng</span>
-      </div>
-      <div class="perk-item">
-        <div class="perk-icon-circle">🛡️</div>
-        <span>Bảo hành 1 đổi 1 lỗi phôi</span>
-      </div>
-      <div class="perk-item">
-        <div class="perk-icon-circle">📱</div>
-        <span>Kèm video kỹ thuật ấp</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Showcase All Combos & Pricing -->
-  <section class="combos-section" style="padding-top: 10px;">
-    <div class="section-head">
-      <h2 class="section-title">
-        <span>📦</span> BẢNG GIÁ CÁC GÓI TRỨNG GIỐNG
-      </h2>
-      <p class="section-subtitle">Tất cả các gói đều được tặng thêm +10% trứng & Miễn phí vận chuyển toàn quốc</p>
-    </div>
-
-    <div class="combos-list">
-      
-      <!-- Combo 1: 50 Trứng -->
-      <div class="combo-card-item" data-pack="Trứng Cào Cào (50 trứng)">
-        <div class="combo-left">
-          <div class="combo-name">
-            50 Trứng Giống
-          </div>
-          <div class="combo-suitability">Thích hợp nuôi thử nghiệm trong thùng xốp nhỏ (~1.000 con non)</div>
-          <div class="combo-gift">🎁 Tặng thêm +5 trứng (Tổng: 55 trứng)</div>
-        </div>
-        <div class="combo-right">
-          <div class="combo-price">149.000₫</div>
-          <div class="combo-old-price">190.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (50 trứng)')">Đặt Mua</button>
-        </div>
-      </div>
-
-      <!-- Combo 2: 100 Trứng -->
-      <div class="combo-card-item" data-pack="Trứng Cào Cào (100 trứng)">
-        <div class="combo-left">
-          <div class="combo-name">
-            100 Trứng Giống
-          </div>
-          <div class="combo-suitability">Chuẩn mật độ lồng lưới 1m² (Nở ~2.000 con non)</div>
-          <div class="combo-gift">🎁 Tặng thêm +10 trứng (Tổng: 110 trứng)</div>
-        </div>
-        <div class="combo-right">
-          <div class="combo-price">270.000₫</div>
-          <div class="combo-old-price">320.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (100 trứng)')">Đặt Mua</button>
-        </div>
-      </div>
-
-      <!-- Combo 3: 200 Trứng -->
-      <div class="combo-card-item" data-pack="Trứng Cào Cào (200 trứng)">
-        <div class="combo-left">
-          <div class="combo-name">
-            200 Trứng Giống
-          </div>
-          <div class="combo-suitability">Chuẩn mật độ lồng 2m² (Nở ~4.000 con non cho 3-5 lồng chim)</div>
-          <div class="combo-gift">🎁 Tặng thêm +20 trứng (Tổng: 220 trứng)</div>
-        </div>
-        <div class="combo-right">
-          <div class="combo-price">500.000₫</div>
-          <div class="combo-old-price">600.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (200 trứng)')">Đặt Mua</button>
-        </div>
-      </div>
-
-      <!-- Combo 4: 500 Trứng (BEST SELLER) -->
-      <div class="combo-card-item featured" data-pack="Trứng Cào Cào (500 trứng)">
-        <div class="combo-left">
-          <div class="combo-badge-row">
-            <span class="badge-pill-hot">🔥 BÁN CHẠY NHẤT</span>
-            <span class="badge-pill-gift">TIẾT KIỆM 200K</span>
-          </div>
-          <div class="combo-name">
-            500 Trứng Giống
-          </div>
-          <div class="combo-suitability">Chuẩn lồng 5m² (Nở ~10.000 con non, gói được chọn nhiều nhất)</div>
-          <div class="combo-gift">🎁 Tặng thêm +50 trứng (Tổng: 550 trứng)</div>
-        </div>
-        <div class="combo-right">
-          <div class="combo-price">1.000.000₫</div>
-          <div class="combo-old-price">1.200.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (500 trứng)')">Đặt Mua</button>
-        </div>
-      </div>
-
-      <!-- Combo 5: 1.000 Trứng -->
-      <div class="combo-card-item" data-pack="Trứng Cào Cào (1000 trứng)">
-        <div class="combo-left">
-          <div class="combo-name">
-            1.000 Trứng Giống
-          </div>
-          <div class="combo-suitability">Nuôi lồng 10m² - Nở ~20.000 con non quy mô trang trại</div>
-          <div class="combo-gift">🎁 Tặng thêm +100 trứng (Tổng: 1.100 trứng)</div>
-        </div>
-        <div class="combo-right">
-          <div class="combo-price">1.800.000₫</div>
-          <div class="combo-old-price">2.100.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (1000 trứng)')">Đặt Mua</button>
-        </div>
-      </div>
-
-      <!-- Combo 6: 2.000 Trứng (GIÁ SỈ) -->
-      <div class="combo-card-item" data-pack="Trứng Cào Cào (2000 trứng)">
-        <div class="combo-left">
-          <div class="combo-badge-row">
-            <span class="badge-pill-hot" style="background: #059669;">💰 GIÁ SỈ TỐT NHẤT</span>
-          </div>
-          <div class="combo-name">
-            2.000 Trứng Giống
-          </div>
-          <div class="combo-suitability">Quy mô trang trại lớn (Nở ~40.000 con non)</div>
-          <div class="combo-gift">🎁 Tặng thêm +200 trứng (Tổng: 2.200 trứng)</div>
-        </div>
-        <div class="combo-right">
-          <div class="combo-price">3.500.000₫</div>
-          <div class="combo-old-price">4.000.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (2000 trứng)')">Đặt Mua</button>
-        </div>
-      </div>
-
-      <!-- Combo 7: Tự Chọn Số Lượng Lớn (Giá sỉ) -->
-      <div class="combo-card-item" data-pack="Tùy chọn số lượng" style="border: 2px dashed #2563eb; background: #eff6ff;">
-        <div class="combo-left">
-          <div class="combo-badge-row">
-            <span class="badge-pill-hot" style="background: #2563eb;">🔥 ĐẶT SỈ TỰ CHỌN</span>
-          </div>
-          <div class="combo-name">
-            Số Lượng Lớn (≥ 2.500 Trứng)
-          </div>
-          <div class="combo-suitability">Tự nhập số lượng trứng theo nhu cầu trang trại lớn của bạn</div>
-          <div class="combo-gift" style="background: #dbeafe; color: #1d4ed8; border-color: #93c5fd;">🎁 Tặng thêm +10% trứng & Freeship</div>
-        </div>
-        <div class="combo-right">
-          <div class="combo-price" style="color: #2563eb;">Giá Sỉ Tận Gốc</div>
-          <div class="combo-old-price">Ưu đãi tối đa</div>
-          <button type="button" class="btn-combo-order" style="background: #2563eb;" onclick="openOrderWithPack('Tùy chọn số lượng')">Nhập Số Lượng</button>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -656,7 +628,7 @@
 <!-- Floating Action Buttons -->
 <div class="floating-actions">
   <a href="https://zalo.me/0935127132" target="_blank" class="floating-btn floating-btn-zalo" title="Chat Zalo">
-    <svg viewBox="0 0 48 48"><path d="M24 4C12.95 4 4 12.95 4 24c0 3.93 1.13 7.6 3.09 10.72L4 44l9.55-3.05C16.53 42.82 20.14 44 24 44c11.05 0 20-8.95 20-20S35.05 4 24 4zm11.23 27.67c-.47 1.33-2.34 2.45-3.83 2.76-.99.21-2.29.38-6.66-1.43-5.59-2.31-9.19-8.01-9.47-8.38-.28-.37-2.27-3.02-2.27-5.77s1.44-4.1 1.95-4.66c.51-.56 1.12-.7 1.49-.7.37 0 .75.01 1.07.02.35.02.82-.13 1.28.98.47 1.12 1.6 3.9 1.74 4.18.14.28.23.6.05.97-.18.37-.28.6-.56.93-.28.33-.59.73-.84.98-.28.28-.57.58-.25 1.14.33.56 1.45 2.39 3.12 3.88 2.15 1.91 3.96 2.51 4.52 2.79.56.28.93.42 1.07.65.14.23.14 1.35-.33 2.68z"/></svg>
+    <svg viewBox="0 0 48 48"><path d="M24 4C12.95 4 4 12.95 4 24c0 3.93 1.13 7.6 3.09 10.72L4 44l9.55-3.05C16.53 42.82 20.14 44 24 44c11.05 0 20-8.95 20-20S35.05 4 24 4zm11.23 27.67c-.47 1.33-2.34 2.45-3.83 2.76-.99.21-2.29.38-6.66-1.43-5.59-2.31-9.19-8.01-9.47-8.38-.28-.37-2.27-3.02-2.27-5.77s1.44-4.1 1.95-4.66c.51-.56 1.12-.7 1.49-.7.37 0 .75.01 1.07.02.35.02.82-.13 1.28.98.47 1.12 1.6 3.9 1.74 4.18.14.28.23.6.05.97-.18.37-.28.6-.56.93-.28.33-.59.73-.84.98-.28.28-.57.58-.25 1.14.33.56 1.45 2.39 3.12 3.88 2.15 1.91 3.96 2.51 4.52 2.79.56.28.89.23 1.21-.14.33-.37 1.4-1.63 1.77-2.19.37-.56.75-.47 1.26-.28.51.19 3.26 1.54 3.82 1.82.56.28.93.42 1.07.65.14.23.14 1.35-.33 2.68z"/></svg>
   </a>
   <a href="tel:0935127132" class="floating-btn floating-btn-phone" title="Gọi Hotline">
     <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>

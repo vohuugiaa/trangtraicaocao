@@ -3038,4 +3038,50 @@ body {
   gap: 4px;
 }
 
+/* Flash Sale Summary Card (Product Page) */
+.product-summary-card {
+  padding: 12px 14px;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+}
+.product-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.current-price-wrap {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--accent-red-dark);
+}
+.original-price-wrap {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.stock-progress-wrap {
+  margin-top: 6px;
+}
+.stock-text-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #fee2e2;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  border-radius: 4px;
+}
+
+
 
