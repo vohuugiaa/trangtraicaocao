@@ -118,7 +118,7 @@
       <span class="tab-icon">📦</span>
       <span class="tab-title">Sản Phẩm</span>
     </a>
-    <a href="/ky-thuat" class="nav-tab-item active">
+    <a href="/ky-thuat" class="nav-tab-item active" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
       <span class="tab-icon">📖</span>
       <span class="tab-title">Kỹ Thuật</span>
     </a>
@@ -299,11 +299,16 @@
   </div>
 
   <!-- CTA Box Order Breeding Eggs -->
-  <div style="margin: 16px; padding: 20px 16px; background: linear-gradient(135deg, #15803d, #16a34a); border-radius: var(--radius-lg); text-align: center; color: #fff;">
-    <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">BẠN ĐÃ SẴN SÀNG NUÔI CÀO CÀO CỐM?</h3>
-    <p style="font-size: 13px; opacity: 0.95; margin-bottom: 14px;">Trứng giống phôi to mẩy, bảo hành đổi mới 100%, freeship toàn quốc kèm quà tặng +10% trứng!</p>
-    <a href="/trung-cao-cao" class="btn-choose-combo" style="display: inline-flex; width: auto; background: #f59e0b; color: #fff; padding: 12px 28px; font-size: 14px; text-decoration: none; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);">
-      🛒 XEM BẢNG GIÁ & ĐẶT HÀNG NGAY
+  <div class="cta-banner-box">
+    <div class="cta-banner-tag">🌟 TRỨNG GIỐNG CỐM CHUẨN</div>
+    <h3 class="cta-banner-title">BẠN ĐÃ SẴN SÀNG NUÔI CÀO CÀO CỐM?</h3>
+    <p class="cta-banner-desc">
+      Trứng giống phôi to mẩy, tỷ lệ nở &gt;90%, bảo hành đổi mới 100%, freeship toàn quốc kèm quà tặng +10% trứng!
+    </p>
+    <a href="/trung-cao-cao" class="btn-cta-vibrant">
+      <span class="cta-btn-icon">🛒</span>
+      <span>XEM BẢNG GIÁ &amp; ĐẶT HÀNG NGAY</span>
+      <span class="cta-btn-arrow">➔</span>
     </a>
   </div>
 
@@ -335,6 +340,18 @@
   </footer>
 
 </div><!-- End .page-container -->
+
+<!-- Sticky Bottom Buy Bar (Quick Order When Scrolling) -->
+<div class="sticky-bottom-bar">
+  <div class="price-summary-bottom">
+    <span class="label-from">Trứng cào cào giống:</span>
+    <span class="price-val">Từ 149.000₫</span>
+    <span class="bonus-tag">🎁 Tặng +10% Trứng & Freeship</span>
+  </div>
+  <a href="/trung-cao-cao" class="btn-buy-sticky" style="text-decoration: none;">
+    <span>🛒</span> XEM BẢNG GIÁ
+  </a>
+</div>
 
 <!-- Floating Action Buttons -->
 <div class="floating-actions">
