@@ -201,7 +201,7 @@
         <div class="combo-right">
           <div class="combo-price">149.000₫</div>
           <div class="combo-old-price">190.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (50 trứng)')">Đặt Mua</button>
+          <button type="button" class="btn-combo-order" onclick="window.location.href='/thanh-toan?goi=50'">Đặt Mua</button>
         </div>
       </div>
 
@@ -217,7 +217,7 @@
         <div class="combo-right">
           <div class="combo-price">270.000₫</div>
           <div class="combo-old-price">320.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (100 trứng)')">Đặt Mua</button>
+          <button type="button" class="btn-combo-order" onclick="window.location.href='/thanh-toan?goi=100'">Đặt Mua</button>
         </div>
       </div>
 
@@ -233,7 +233,7 @@
         <div class="combo-right">
           <div class="combo-price">500.000₫</div>
           <div class="combo-old-price">600.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (200 trứng)')">Đặt Mua</button>
+          <button type="button" class="btn-combo-order" onclick="window.location.href='/thanh-toan?goi=200'">Đặt Mua</button>
         </div>
       </div>
 
@@ -253,7 +253,7 @@
         <div class="combo-right">
           <div class="combo-price">1.000.000₫</div>
           <div class="combo-old-price">1.200.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (500 trứng)')">Đặt Mua</button>
+          <button type="button" class="btn-combo-order" onclick="window.location.href='/thanh-toan?goi=500'">Đặt Mua</button>
         </div>
       </div>
 
@@ -269,7 +269,7 @@
         <div class="combo-right">
           <div class="combo-price">1.800.000₫</div>
           <div class="combo-old-price">2.100.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (1000 trứng)')">Đặt Mua</button>
+          <button type="button" class="btn-combo-order" onclick="window.location.href='/thanh-toan?goi=1000'">Đặt Mua</button>
         </div>
       </div>
 
@@ -288,7 +288,7 @@
         <div class="combo-right">
           <div class="combo-price">3.500.000₫</div>
           <div class="combo-old-price">4.000.000₫</div>
-          <button type="button" class="btn-combo-order" onclick="openOrderWithPack('Trứng Cào Cào (2000 trứng)')">Đặt Mua</button>
+          <button type="button" class="btn-combo-order" onclick="window.location.href='/thanh-toan?goi=2000'">Đặt Mua</button>
         </div>
       </div>
 
@@ -307,7 +307,7 @@
         <div class="combo-right">
           <div class="combo-price" style="color: #2563eb;">Giá Sỉ Tận Gốc</div>
           <div class="combo-old-price">Ưu đãi tối đa</div>
-          <button type="button" class="btn-combo-order" style="background: #2563eb;" onclick="openOrderWithPack('Tùy chọn số lượng')">Nhập Số Lượng</button>
+          <button type="button" class="btn-combo-order" style="background: #2563eb;" onclick="window.location.href='/thanh-toan?goi=si'">Nhập Số Lượng</button>
         </div>
       </div>
 
@@ -620,9 +620,9 @@
     <span class="price-val" id="stickyPriceDisplay">149.000₫</span>
     <span class="bonus-tag">🎁 Tặng +10% Trứng & Freeship</span>
   </div>
-  <button type="button" class="btn-buy-sticky" id="btnOpenOrderModal">
+  <a href="/thanh-toan?goi=500" class="btn-buy-sticky" style="text-decoration: none;">
     <span>🛒</span> MUA NGAY
-  </button>
+  </a>
 </div>
 
 <!-- Floating Action Buttons -->

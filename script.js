@@ -338,7 +338,11 @@ document.addEventListener('DOMContentLoaded', function () {
     goToOrderStep(1);
   }
 
-  if (btnOpenOrderModal) btnOpenOrderModal.addEventListener('click', openBottomSheet);
+  if (btnOpenOrderModal) {
+    btnOpenOrderModal.addEventListener('click', function () {
+      window.location.href = '/thanh-toan?goi=500';
+    });
+  }
   if (btnCloseSheet) {
     btnCloseSheet.addEventListener('click', function () {
       closeBottomSheet();
@@ -348,20 +352,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Handle Opening from external combo cards
+  // Handle Opening directly to dedicated checkout page
   window.openOrderWithPack = function (packValue, customEggs = null) {
-    productRadios.forEach(radio => {
-      if (radio.value === packValue) {
-        radio.checked = true;
-      }
-    });
-
-    if (packValue === 'Tùy chọn số lượng' && customEggs) {
-      if (customEggQuantity) customEggQuantity.value = Math.max(2500, customEggs);
+    let key = '500';
+    if (packValue) {
+      if (packValue.includes('50 ') || packValue.includes('(50 ')) key = '50';
+      else if (packValue.includes('100 ') || packValue.includes('(100 ')) key = '100';
+      else if (packValue.includes('200 ') || packValue.includes('(200 ')) key = '200';
+      else if (packValue.includes('500 ') || packValue.includes('(500 ')) key = '500';
+      else if (packValue.includes('1000') || packValue.includes('1.000')) key = '1000';
+      else if (packValue.includes('2000') || packValue.includes('2.000')) key = '2000';
+      else if (packValue.includes('Tùy chọn') || packValue.includes('sỉ') || packValue.includes('Sỉ')) key = 'si';
     }
-
-    recalculateOrderTotal();
-    openBottomSheet();
+    let url = '/thanh-toan?goi=' + key;
+    if (key === 'si' && customEggs) {
+      url += '&qty=' + customEggs;
+    }
+    window.location.href = url;
   };
 
   // Back history interception for smooth UX
