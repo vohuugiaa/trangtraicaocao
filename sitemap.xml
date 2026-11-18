@@ -1,33 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Trang Chủ -->
   <url>
     <loc>https://trangtraicaocao.com/</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Bảng Giá Trứng Cào Cào Giống -->
   <url>
     <loc>https://trangtraicaocao.com/trung-cao-cao</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
+
+  <!-- Cẩm Nang Kỹ Thuật Nuôi & Ấp Trứng -->
   <url>
     <loc>https://trangtraicaocao.com/ky-thuat</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
+
+  <!-- Chuyên Mục Bài Viết & Kinh Nghiệm -->
   <url>
     <loc>https://trangtraicaocao.com/bai-viet</loc>
     <lastmod>2026-11-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://trangtraicaocao.com/thanh-toan</loc>
-    <lastmod>2026-11-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- Bài viết 1: Cào cào cho chim chào mào -->
+  <url>
+    <loc>https://trangtraicaocao.com/bai-viet/vi-sao-cao-cao-com-cho-chim-chao-mao</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Bài viết 2: Ấp trứng mùa đông -->
+  <url>
+    <loc>https://trangtraicaocao.com/bai-viet/bi-quyet-ap-trung-cao-cao-mua-dong</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Bài viết 3: Làm lồng nuôi cào cào -->
+  <url>
+    <loc>https://trangtraicaocao.com/bai-viet/huong-dan-lam-long-nuoi-cao-cao</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Bài viết 4: Mô hình nuôi cào cào làm giàu -->
+  <url>
+    <loc>https://trangtraicaocao.com/bai-viet/mo-hinh-nuoi-cao-cao-com-lam-giau</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>
